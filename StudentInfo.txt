@@ -1,0 +1,32 @@
+StudentName = Alex Smith
+VID = 031239
+Grade = Senior
+Advising = True
+TotalGPA = 3.0
+MajorGPA = 3.5
+MajorCredits = 45
+UpperLevelCredits = 45
+TotalCredits = 120
+Date = 10/03/2014
+
+StudentName = Alex Smith
+VID = 031239
+Grade = Senior
+Advising = True
+TotalGPA = 3.0
+MajorGPA = 3.5
+MajorCredits = 45
+UpperLevelCredits = 45
+TotalCredits = 120
+Date = 10/03/2014
+
+StudentName = Alex Smith
+VID = 031239
+Grade = Senior
+Advising = True
+TotalGPA = 3.0
+MajorGPA = 3.5
+MajorCredits = 45
+UpperLevelCredits = 45
+TotalCredits = 120
+Date = 10/03/2014
