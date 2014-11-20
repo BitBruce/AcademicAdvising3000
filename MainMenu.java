@@ -3,29 +3,126 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-//Main class
-public class GuiApp1{
-	//Declare variables
-	static JFrame frame1;
-	static JPanel buttons;
-	static JPanel managePanel;
-	static JPanel recordPanel;
-	static JPanel gradPanel;
-	static JPanel reportsPanel;
+class MainMenu {
+	JFrame frame1;
+	JPanel buttons;
+	JPanel managePanel;
+	JPanel recordPanel;
+	JPanel gradPanel;
+	JPanel reportsPanel;
+;
 	
-	public static void displayPanel(JPanel panel){
+	public MainMenu(){
+		//Create the frame
+				frame1 = new JFrame ("Academic Advising 3000");
+				//Set its size to 800x200 pixels
+				frame1.setSize (400,400);
+				//Prepare panel
+				frame1.setLocationRelativeTo(null);
+				
+				buttons = new JPanel(new GridBagLayout());
+
+				//set up contructor when I figure this out
+				managePanel = new JPanel(new GridBagLayout());
+				recordPanel = new JPanel(new GridBagLayout());
+				gradPanel = new JPanel(new GridBagLayout());
+				reportsPanel = new JPanel(new GridBagLayout());
+				
+				
+				makeButtons();
+				manageMenu();
+				recordMenu();
+				gradMenu();
+				reportsMenu();
+				
+				//where the frme should start
+				frame1.getContentPane().removeAll();
+				frame1.add(buttons, BorderLayout.CENTER);
+				frame1.repaint();
+				
+				
+				frame1.setVisible (true);
+						
+	}
+	public void makeButtons(){
+		JLabel comboLbl = new JLabel("Academic Advising 3000"); 
+		
+		comboLbl.setFont(new Font("Arial", 2, 28));
+		JButton manageInfo = new JButton("Manage Student Information");
+		manageInfo.setSize(new Dimension(200, 25));
+		
+		manageInfo.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e){
+				
+				displayPanel(managePanel);
+			}
+		});
+		
+		JButton recordAdv = new JButton("Record Academic Advising");
+		recordAdv.setPreferredSize(new Dimension(200, 25));
+		recordAdv.addActionListener(new ActionListener() {
+					
+			public void actionPerformed(ActionEvent e){
+				displayPanel(recordPanel);
+			}
+		});
+		
+		JButton gradSub = new JButton("Graduation Submission");
+		gradSub.setMinimumSize(new Dimension(200, 25));
+		gradSub.addActionListener(new ActionListener() {
+					
+			public void actionPerformed(ActionEvent e){
+				displayPanel(gradPanel);
+			}
+		});
+		
+		JButton reports = new JButton("Find Reports");
+		reports.setMinimumSize(new Dimension(200, 25));
+		reports.addActionListener(new ActionListener() {
+					
+			public void actionPerformed(ActionEvent e){
+				displayPanel(reportsPanel);
+			}
+		});
+		
+		
+
+ 
+		Insets insets = frame1.getInsets();
+	
+		GridBagConstraints c = new GridBagConstraints();
+		c.insets = new Insets(50, 50, 50, 50);
+		buttons.add(comboLbl, c);
+		
+		c.insets = new Insets(10,10,10,10);
+		c.gridx = 0;
+		c.gridy = 2;
+		buttons.add(manageInfo, c);
+		c.gridy = 3;
+		buttons.add(recordAdv, c);
+		c.gridy = 4;
+		buttons.add(gradSub, c);
+		c.gridy = 5;
+		buttons.add(reports, c);
+
+
+
+	}
+
+	public void displayPanel(JPanel panel){
 		frame1.getContentPane().removeAll();
 		frame1.add(panel);
 		frame1.repaint();
 		frame1.setVisible(true);
 	}
-	public static void mainMenu(){
+	public void mainMenu(){
 		frame1.getContentPane().removeAll();
 		frame1.add(buttons);
 		frame1.repaint();
 		frame1.setVisible(true);
 	}
-	public static void manageMenu(){
+	public void manageMenu(){
 		
 		JLabel menuTitle = new JLabel("Manage Student Info");
 		menuTitle.setFont(new Font("Arial", 2, 28));
@@ -70,7 +167,7 @@ public class GuiApp1{
 		managePanel.add(mainMenu, c);
 
 	}
-	public static void recordMenu(){
+	public void recordMenu(){
 		JLabel menuTitle = new JLabel("Record Academic Advising");
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		
@@ -93,7 +190,7 @@ public class GuiApp1{
 		recordPanel.add(mainMenu, c);
 
 	}
-	public static void gradMenu(){
+	public void gradMenu(){
 		
 			frame1.getContentPane().removeAll();
 			
@@ -118,7 +215,7 @@ public class GuiApp1{
 			
 
 	}
-	public static void reportsMenu(){
+	public void reportsMenu(){
 			JLabel menuTitle = new JLabel("Reports");
 			menuTitle.setFont(new Font("Arial", 2, 28));
 			
@@ -140,98 +237,6 @@ public class GuiApp1{
 			reportsPanel.add(menuTitle, c);
 			c.gridy = 2;
 			reportsPanel.add(mainMenu, c);
-
-	}
-	public static void main (String args[]){
-		
-		//Create the frame
-		frame1 = new JFrame ("Academic Advising 3000");
-		//Set its size to 800x200 pixels
-		frame1.setSize (400,400);
-		//Prepare panel
-		frame1.setLocationRelativeTo(null);
-
-
-		buttons = new JPanel(new GridBagLayout());
-
-		JLabel comboLbl = new JLabel("Academic Advising 3000"); 
-		
-		comboLbl.setFont(new Font("Arial", 2, 28));
-		JButton manageInfo = new JButton("Manage Student Information");
-		manageInfo.setPreferredSize(new Dimension(200, 25));
-		
-		manageInfo.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e){
-				
-				displayPanel(managePanel);
-			}
-		});
-		
-		JButton recordAdv = new JButton("Record Academic Advising");
-		recordAdv.setPreferredSize(new Dimension(200, 25));
-		recordAdv.addActionListener(new ActionListener() {
-					
-			public void actionPerformed(ActionEvent e){
-				displayPanel(recordPanel);
-			}
-		});
-		
-		JButton gradSub = new JButton("Graduation Submission");
-		gradSub.setPreferredSize(new Dimension(200, 25));
-		gradSub.addActionListener(new ActionListener() {
-					
-			public void actionPerformed(ActionEvent e){
-				displayPanel(gradPanel);
-			}
-		});
-		
-		JButton reports = new JButton("Find Reports");
-		reports.setPreferredSize(new Dimension(200, 25));
-		reports.addActionListener(new ActionListener() {
-					
-			public void actionPerformed(ActionEvent e){
-				displayPanel(reportsPanel);
-			}
-		});
-		
-		
-		//set up contructor when I figure this out
-		managePanel = new JPanel(new GridBagLayout());
-		recordPanel = new JPanel(new GridBagLayout());
-		gradPanel = new JPanel(new GridBagLayout());
-		reportsPanel = new JPanel(new GridBagLayout());
-		
-		manageMenu();
-		recordMenu();
-		gradMenu();
-		reportsMenu();
-				
- 
-		Insets insets = frame1.getInsets();
-	
-		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(50, 50, 50, 50);
-		buttons.add(comboLbl, c);
-		
-		c.insets = new Insets(10,10,10,10);
-		c.gridx = 0;
-		c.gridy = 2;
-		buttons.add(manageInfo, c);
-		c.gridy = 3;
-		buttons.add(recordAdv, c);
-		c.gridy = 4;
-		buttons.add(gradSub, c);
-		c.gridy = 5;
-		buttons.add(reports, c);
-
-		frame1.getContentPane().removeAll();
-		frame1.add(buttons, BorderLayout.CENTER);
-		frame1.repaint();
-		
-		
-		frame1.setVisible (true);
-		
 
 	}
 }
