@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> Gui-first
 //Import packages
 import javax.swing.*;
 import java.awt.*;
@@ -14,14 +17,26 @@ public class GuiApp1{
 	static JPanel gradPanel;
 	static JPanel reportsPanel;
 	
+<<<<<<< HEAD
 	
 	public static void mainMenu(JPanel panel){
 		frame1.remove(panel);
+=======
+	public static void displayPanel(JPanel panel){
+		frame1.getContentPane().removeAll();
+		frame1.add(panel);
+		frame1.repaint();
+		frame1.setVisible(true);
+	}
+	public static void mainMenu(){
+		frame1.getContentPane().removeAll();
+>>>>>>> Gui-first
 		frame1.add(buttons);
 		frame1.repaint();
 		frame1.setVisible(true);
 	}
 	public static void manageMenu(){
+<<<<<<< HEAD
 		JLabel menuTitle = new JLabel("Manage Student Info");
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		JButton addStudent = new JButton("Add Student");
@@ -32,11 +47,33 @@ public class GuiApp1{
 		deleteStudent.setPreferredSize(new Dimension(200, 25));
 		JButton importStudent = new JButton("Import Student Text File");
 		importStudent.setPreferredSize(new Dimension(200, 25));
+=======
+		
+		JLabel menuTitle = new JLabel("Manage Student Info");
+		menuTitle.setFont(new Font("Arial", 2, 28));
+		
+		JButton addStudent = new JButton("Add Student");
+		addStudent.setPreferredSize(new Dimension(200, 25));
+		
+		JButton editStudent = new JButton("Edit Student");
+		editStudent.setPreferredSize(new Dimension(200, 25));
+		
+		JButton deleteStudent = new JButton("Delete Student");
+		deleteStudent.setPreferredSize(new Dimension(200, 25));
+		
+		JButton importStudent = new JButton("Import Student Text File");
+		importStudent.setPreferredSize(new Dimension(200, 25));
+		
+>>>>>>> Gui-first
 		JButton mainMenu = new JButton("Main Menu");
 		mainMenu.setPreferredSize(new Dimension(200, 25));
 		mainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
 				mainMenu(managePanel);
+=======
+				mainMenu();
+>>>>>>> Gui-first
 			}
 		});
 		
@@ -46,8 +83,11 @@ public class GuiApp1{
 		c.insets = new Insets(50, 50, 50, 50);
 		managePanel.add(menuTitle, c);
 				
+<<<<<<< HEAD
 				
 				
+=======
+>>>>>>> Gui-first
 		c.insets = new Insets(10,10,10,10);
 		c.gridx = 0;
 		c.gridy = 2;
@@ -60,11 +100,14 @@ public class GuiApp1{
 		managePanel.add(importStudent, c);
 		c.gridy = 6;
 		managePanel.add(mainMenu, c);
+<<<<<<< HEAD
 		
 		frame1.remove(buttons);
 		frame1.add(managePanel);
 		frame1.repaint();
 		frame1.setVisible(true);
+=======
+>>>>>>> Gui-first
 
 	}
 	public static void recordMenu(){
@@ -75,7 +118,11 @@ public class GuiApp1{
 		mainMenu.setPreferredSize(new Dimension(200, 25));
 		mainMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
 				mainMenu(recordPanel);
+=======
+				mainMenu();
+>>>>>>> Gui-first
 			}
 		});
 
@@ -89,6 +136,7 @@ public class GuiApp1{
 		c.gridy = 2;
 		recordPanel.add(mainMenu, c);
 
+<<<<<<< HEAD
 		frame1.remove(buttons);
 		frame1.add(recordPanel);
 		frame1.repaint();
@@ -96,6 +144,13 @@ public class GuiApp1{
 	}
 	public static void gradMenu(){
 		
+=======
+	}
+	public static void gradMenu(){
+		
+			frame1.getContentPane().removeAll();
+			
+>>>>>>> Gui-first
 			JLabel menuTitle = new JLabel("Graduation Submission");
 			menuTitle.setFont(new Font("Arial", 2, 28));
 			
@@ -103,7 +158,11 @@ public class GuiApp1{
 			mainMenu.setPreferredSize(new Dimension(200, 25));
 			mainMenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
 					mainMenu(gradPanel);
+=======
+					mainMenu();
+>>>>>>> Gui-first
 				}
 			});
 
@@ -115,11 +174,15 @@ public class GuiApp1{
 			c.gridy = 2;
 			gradPanel.add(mainMenu, c);
 			
+<<<<<<< HEAD
 									
 			frame1.remove(buttons);
 			frame1.add(gradPanel);
 			frame1.repaint();
 			frame1.setVisible(true);
+=======
+
+>>>>>>> Gui-first
 	}
 	public static void reportsMenu(){
 			JLabel menuTitle = new JLabel("Reports");
@@ -129,7 +192,11 @@ public class GuiApp1{
 			mainMenu.setPreferredSize(new Dimension(200, 25));
 			mainMenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
 					mainMenu(reportsPanel);
+=======
+					mainMenu();
+>>>>>>> Gui-first
 				}
 			});
 
@@ -143,6 +210,7 @@ public class GuiApp1{
 			reportsPanel.add(menuTitle, c);
 			c.gridy = 2;
 			reportsPanel.add(mainMenu, c);
+<<<<<<< HEAD
 									
 			frame1.remove(buttons);
 			frame1.add(reportsPanel);
@@ -150,6 +218,12 @@ public class GuiApp1{
 			frame1.setVisible(true);
 	}
 	public static void main (String args[]){
+=======
+
+	}
+	public static void main (String args[]){
+		
+>>>>>>> Gui-first
 		//Create the frame
 		frame1 = new JFrame ("Academic Advising 3000");
 		//Set its size to 800x200 pixels
@@ -157,6 +231,7 @@ public class GuiApp1{
 		//Prepare panel
 		frame1.setLocationRelativeTo(null);
 
+<<<<<<< HEAD
 		buttons = new JPanel(new GridBagLayout());
 		
 		managePanel = new JPanel(new GridBagLayout());
@@ -164,6 +239,10 @@ public class GuiApp1{
 		gradPanel = new JPanel(new GridBagLayout());
 		reportsPanel = new JPanel(new GridBagLayout());
 
+=======
+
+		buttons = new JPanel(new GridBagLayout());
+>>>>>>> Gui-first
 
 		JLabel comboLbl = new JLabel("Academic Advising 3000"); 
 		
@@ -175,7 +254,11 @@ public class GuiApp1{
 			
 			public void actionPerformed(ActionEvent e){
 				
+<<<<<<< HEAD
 				manageMenu();
+=======
+				displayPanel(managePanel);
+>>>>>>> Gui-first
 			}
 		});
 		
@@ -184,7 +267,11 @@ public class GuiApp1{
 		recordAdv.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
 				recordMenu();
+=======
+				displayPanel(recordPanel);
+>>>>>>> Gui-first
 			}
 		});
 		
@@ -193,20 +280,32 @@ public class GuiApp1{
 		gradSub.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
+<<<<<<< HEAD
 				gradMenu();
+=======
+				displayPanel(gradPanel);
+>>>>>>> Gui-first
 			}
 		});
 		
 		JButton reports = new JButton("Find Reports");
 		reports.setPreferredSize(new Dimension(200, 25));
+<<<<<<< HEAD
 		gradSub.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
 				reportsMenu();
+=======
+		reports.addActionListener(new ActionListener() {
+					
+			public void actionPerformed(ActionEvent e){
+				displayPanel(reportsPanel);
+>>>>>>> Gui-first
 			}
 		});
 		
 		
+<<<<<<< HEAD
 				
  
 		Insets insets = frame1.getInsets();
@@ -223,6 +322,26 @@ public class GuiApp1{
 		
 		
 		
+=======
+		//set up contructor when I figure this out
+		managePanel = new JPanel(new GridBagLayout());
+		recordPanel = new JPanel(new GridBagLayout());
+		gradPanel = new JPanel(new GridBagLayout());
+		reportsPanel = new JPanel(new GridBagLayout());
+		
+		manageMenu();
+		recordMenu();
+		gradMenu();
+		reportsMenu();
+				
+ 
+		Insets insets = frame1.getInsets();
+	
+		GridBagConstraints c = new GridBagConstraints();
+		c.insets = new Insets(50, 50, 50, 50);
+		buttons.add(comboLbl, c);
+		
+>>>>>>> Gui-first
 		c.insets = new Insets(10,10,10,10);
 		c.gridx = 0;
 		c.gridy = 2;
@@ -234,11 +353,22 @@ public class GuiApp1{
 		c.gridy = 5;
 		buttons.add(reports, c);
 
+<<<<<<< HEAD
 		
+=======
+		frame1.getContentPane().removeAll();
+>>>>>>> Gui-first
 		frame1.add(buttons, BorderLayout.CENTER);
 		frame1.repaint();
 		
 		
 		frame1.setVisible (true);
+<<<<<<< HEAD
 	}
 }
+=======
+		
+
+	}
+}
+>>>>>>> Gui-first
