@@ -8,6 +8,8 @@ class ManageMenu {
 	public JPanel editStudent;
 	public JPanel findStudent;
 	public JPanel deleteStudent;
+	public String seekWord;
+	public String [] general;
 	
 	JFrame frame1;//take out when put classes together
 	
@@ -16,6 +18,7 @@ class ManageMenu {
 		editStudent = new JPanel(new GridBagLayout());
 		findStudent = new JPanel(new GridBagLayout());
 		deleteStudent = new JPanel(new GridBagLayout());
+		general = new String[4];
 		//nothing
 		frame1 = new JFrame ("Academic Advising 3000");
 		//Set its size to 800x200 pixels
@@ -34,6 +37,7 @@ class ManageMenu {
 
 	//give vnumber to delete
 	public void deleteStudentPanel(){
+
 		JLabel menuTitle = new JLabel("Delete Student");
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		
@@ -44,7 +48,8 @@ class ManageMenu {
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						//delete student
+						seekWord = find1.getText();
+						//delete student at seekWord
 					}
 				});
 		JButton back = new JButton("Back");
@@ -87,26 +92,30 @@ class ManageMenu {
 		JLabel c = new JLabel("Student Number");
 		JLabel d = new JLabel("Grade");
 		
+		JTextField a1 = new JTextField(5);//First Name
+		JTextField b1 = new JTextField(5);//Last Name
+		JTextField c1 = new JTextField(5);//Student Number
+		JTextField d1 = new JTextField(5);//Grade
+		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						//display managePanel
+						general[0] = a1.getText();
+						general[1] = b1.getText();
+						general[2] = c1.getText();
+						general[3] = d1.getText();
+						//submit text fields and switch back to managePanel
+						
 					}
 				});
 		JButton back = new JButton("Back");
 		back.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						//submit text fields and switch back to managePanel
+						//display managePanel
 					}
 				});
-		
-		JTextField a1 = new JTextField(5);//First Name
-		JTextField b1 = new JTextField(5);//Last Name
-		JTextField c1 = new JTextField(5);//Student Number
-		JTextField d1 = new JTextField(5);//Grade
-		
 		
 		GridBagConstraints con = new GridBagConstraints();
 		Insets insets = frame1.getInsets();
@@ -157,7 +166,8 @@ class ManageMenu {
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						//find student
+						seekWord = find1.getText();
+						//find student at seekWord and get the appropriate Strings back
 						editStudentPanel("a","b","c","d");//use the found stuff
 					}
 				});
@@ -199,11 +209,21 @@ class ManageMenu {
 		JLabel c = new JLabel("Student Number");
 		JLabel d = new JLabel("Grade");
 		
+		
+		JTextField a1 = new JTextField(first, 5);//First Name
+		JTextField b1 = new JTextField(last, 5);//Last Name
+		JTextField c1 = new JTextField(number, 5);//Student Number
+		JTextField d1 = new JTextField(grade, 5);//Grade
+		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						//display managePanel
+						general[0] = a1.getText();
+						general[1] = b1.getText();
+						general[2] = c1.getText();
+						general[3] = d1.getText();
+						//send general to back end and display managePanel
 					}
 				});
 		JButton back = new JButton("Back");
@@ -213,12 +233,6 @@ class ManageMenu {
 						//submit text fields and switch back to managePanel
 					}
 				});
-		
-		JTextField a1 = new JTextField(first, 5);//First Name
-		JTextField b1 = new JTextField(last, 5);//Last Name
-		JTextField c1 = new JTextField(number, 5);//Student Number
-		JTextField d1 = new JTextField(grade, 5);//Grade
-		
 		
 		GridBagConstraints con = new GridBagConstraints();
 		Insets insets = frame1.getInsets();

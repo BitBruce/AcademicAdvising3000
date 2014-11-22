@@ -10,7 +10,7 @@ class MainMenu {
 	JPanel recordPanel;
 	JPanel gradPanel;
 	JPanel reportsPanel;
-;
+
 	
 	public MainMenu(){
 		//Create the frame
