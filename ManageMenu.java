@@ -8,23 +8,28 @@ class ManageMenu {
 	public JPanel editStudent;
 	public JPanel findStudent;
 	public JPanel deleteStudent;
+	public JPanel managePanel;
 	public String seekWord;
 	public String [] general;
 	
 	JFrame frame1;//take out when put classes together
 	
-	public ManageMenu(){
+	public ManageMenu(JFrame frame){
+		managePanel = new JPanel(new GridBagLayout());
 		addStudent = new JPanel(new GridBagLayout());
 		editStudent = new JPanel(new GridBagLayout());
 		findStudent = new JPanel(new GridBagLayout());
 		deleteStudent = new JPanel(new GridBagLayout());
 		general = new String[4];
 		//nothing
-		frame1 = new JFrame ("Academic Advising 3000");
-		//Set its size to 800x200 pixels
-		frame1.setSize (400,400);
-		//Prepare panel
-		frame1.setLocationRelativeTo(null);
+		frame1 = frame;
+
+		
+		manageMenu();
+		addStudentPanel();
+		deleteStudentPanel();
+		findStudentPanel();
+		//editStudentPanel will probably be a problem with going more than once to the screen
 	}
 	
 	//prob take out when done testing
@@ -34,6 +39,79 @@ class ManageMenu {
 		frame1.repaint();
 		frame1.setVisible(true);
 	}
+	
+	public void manageMenu(){
+		
+		JLabel menuTitle = new JLabel("Manage Student Info");
+		menuTitle.setFont(new Font("Arial", 2, 28));
+		
+		JButton addStudentButton = new JButton("Add Student");
+		addStudentButton.setPreferredSize(new Dimension(200, 25));
+		addStudentButton.addActionListener(new ActionListener() {
+							
+					public void actionPerformed(ActionEvent e){
+						displayPanel(addStudent);
+					}
+				});
+		
+		JButton editStudentButton = new JButton("Edit Student");
+		editStudentButton.setPreferredSize(new Dimension(200, 25));
+		editStudentButton.addActionListener(new ActionListener() {
+							
+					public void actionPerformed(ActionEvent e){
+						displayPanel(findStudent);
+					}
+				});		
+		
+		JButton deleteStudentButton = new JButton("Delete Student");
+		deleteStudentButton.setPreferredSize(new Dimension(200, 25));
+		deleteStudentButton.addActionListener(new ActionListener() {
+							
+					public void actionPerformed(ActionEvent e){
+						displayPanel(deleteStudent);
+					}
+				});
+		
+		JButton importStudentButton = new JButton("Import Student Text File");
+		importStudentButton.setPreferredSize(new Dimension(200, 25));
+		importStudentButton.addActionListener(new ActionListener() {
+							
+					public void actionPerformed(ActionEvent e){
+						//have to add import capabilities
+					}
+				});
+		
+		JButton mainMenuButton = new JButton("Main Menu");
+		mainMenuButton.setPreferredSize(new Dimension(200, 25));
+		mainMenuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				//mainMenu(); need to fix this so it goes back to mainMenu
+			}
+		});
+		
+		GridBagConstraints c = new GridBagConstraints();
+		Insets insets = frame1.getInsets();
+		
+		c.insets = new Insets(50, 50, 50, 50);
+		managePanel.add(menuTitle, c);
+				
+		c.insets = new Insets(10,10,10,10);
+		c.gridx = 0;
+		c.gridy = 2;
+		managePanel.add(addStudentButton, c);
+		c.gridy = 3;
+		managePanel.add(editStudentButton, c);
+		c.gridy = 4;
+		managePanel.add(deleteStudentButton, c);
+		c.gridy = 5;
+		managePanel.add(importStudentButton, c);
+		c.gridy = 6;
+		managePanel.add(mainMenuButton, c);
+		
+		displayPanel(managePanel);
+
+	}
+	
 
 	//give vnumber to delete
 	public void deleteStudentPanel(){
@@ -50,6 +128,7 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						seekWord = find1.getText();
 						//delete student at seekWord
+						displayPanel(managePanel);
 					}
 				});
 		JButton back = new JButton("Back");
@@ -57,6 +136,7 @@ class ManageMenu {
 							
 					public void actionPerformed(ActionEvent e){
 						//back to managePanel
+						displayPanel(managePanel);
 					}
 				});
 		
@@ -107,6 +187,8 @@ class ManageMenu {
 						general[3] = d1.getText();
 						//submit text fields and switch back to managePanel
 						
+						displayPanel(managePanel);
+						
 					}
 				});
 		JButton back = new JButton("Back");
@@ -114,6 +196,7 @@ class ManageMenu {
 							
 					public void actionPerformed(ActionEvent e){
 						//display managePanel
+						displayPanel(managePanel);
 					}
 				});
 		
@@ -176,6 +259,7 @@ class ManageMenu {
 							
 					public void actionPerformed(ActionEvent e){
 						//back to managePanel
+						displayPanel(managePanel);
 					}
 				});
 		
@@ -224,13 +308,16 @@ class ManageMenu {
 						general[2] = c1.getText();
 						general[3] = d1.getText();
 						//send general to back end and display managePanel
+						
+						displayPanel(managePanel);
 					}
 				});
 		JButton back = new JButton("Back");
 		back.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						//submit text fields and switch back to managePanel
+						//switch back to managePanel
+						displayPanel(managePanel);
 					}
 				});
 		
@@ -268,7 +355,7 @@ class ManageMenu {
 		con.gridx = 1;
 		editStudent.add(submit, con);
 		
-		//take this out when done
+		
 		displayPanel(editStudent);
 	}
 }

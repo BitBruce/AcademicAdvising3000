@@ -7,7 +7,7 @@ class MainMenu {
 	JFrame frame1;
 	JPanel buttons;
 	JPanel managePanel;
-	JPanel recordPanel;
+	//JPanel recordPanel;
 	JPanel gradPanel;
 	JPanel reportsPanel;
 
@@ -16,7 +16,7 @@ class MainMenu {
 		//Create the frame
 				frame1 = new JFrame ("Academic Advising 3000");
 				//Set its size to 800x200 pixels
-				frame1.setSize (400,400);
+				frame1.setSize (600,600);
 				//Prepare panel
 				frame1.setLocationRelativeTo(null);
 				
@@ -24,14 +24,14 @@ class MainMenu {
 
 				//set up contructor when I figure this out
 				managePanel = new JPanel(new GridBagLayout());
-				recordPanel = new JPanel(new GridBagLayout());
+				//recordPanel = new JPanel(new GridBagLayout());
 				gradPanel = new JPanel(new GridBagLayout());
 				reportsPanel = new JPanel(new GridBagLayout());
 				
 				
 				makeButtons();
-				manageMenu();
-				recordMenu();
+				//manageMenu();
+				//recordMenu();
 				gradMenu();
 				reportsMenu();
 				
@@ -54,8 +54,8 @@ class MainMenu {
 		manageInfo.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e){
-				
-				displayPanel(managePanel);
+				ManageMenu x = new ManageMenu(frame1);
+				//displayPanel(managePanel);
 			}
 		});
 		
@@ -64,7 +64,7 @@ class MainMenu {
 		recordAdv.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
-				displayPanel(recordPanel);
+				Record x = new Record(frame1);
 			}
 		});
 		
@@ -122,74 +122,8 @@ class MainMenu {
 		frame1.repaint();
 		frame1.setVisible(true);
 	}
-	public void manageMenu(){
-		
-		JLabel menuTitle = new JLabel("Manage Student Info");
-		menuTitle.setFont(new Font("Arial", 2, 28));
-		
-		JButton addStudent = new JButton("Add Student");
-		addStudent.setPreferredSize(new Dimension(200, 25));
-		
-		JButton editStudent = new JButton("Edit Student");
-		editStudent.setPreferredSize(new Dimension(200, 25));
-		
-		JButton deleteStudent = new JButton("Delete Student");
-		deleteStudent.setPreferredSize(new Dimension(200, 25));
-		
-		JButton importStudent = new JButton("Import Student Text File");
-		importStudent.setPreferredSize(new Dimension(200, 25));
-		
-		JButton mainMenu = new JButton("Main Menu");
-		mainMenu.setPreferredSize(new Dimension(200, 25));
-		mainMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				mainMenu();
-			}
-		});
-		
-		GridBagConstraints c = new GridBagConstraints();
-		Insets insets = frame1.getInsets();
-		
-		c.insets = new Insets(50, 50, 50, 50);
-		managePanel.add(menuTitle, c);
-				
-		c.insets = new Insets(10,10,10,10);
-		c.gridx = 0;
-		c.gridy = 2;
-		managePanel.add(addStudent, c);
-		c.gridy = 3;
-		managePanel.add(editStudent, c);
-		c.gridy = 4;
-		managePanel.add(deleteStudent, c);
-		c.gridy = 5;
-		managePanel.add(importStudent, c);
-		c.gridy = 6;
-		managePanel.add(mainMenu, c);
 
-	}
-	public void recordMenu(){
-		JLabel menuTitle = new JLabel("Record Academic Advising");
-		menuTitle.setFont(new Font("Arial", 2, 28));
-		
-		JButton mainMenu = new JButton("Main Menu");
-		mainMenu.setPreferredSize(new Dimension(200, 25));
-		mainMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				mainMenu();
-			}
-		});
 
-		GridBagConstraints c = new GridBagConstraints();
-		Insets insets = frame1.getInsets();
-		Dimension size = menuTitle.getPreferredSize();
-		recordPanel.setBounds(250+insets.left, 100+insets.top, size.width, size.height);
-						
-		c.insets = new Insets(50, 50, 50, 50);
-		recordPanel.add(menuTitle, c);
-		c.gridy = 2;
-		recordPanel.add(mainMenu, c);
-
-	}
 	public void gradMenu(){
 		
 			frame1.getContentPane().removeAll();
