@@ -1,32 +1,33 @@
-StudentName = Alex Smith
-VID = 031239
-Grade = Senior
-Advising = True
-TotalGPA = 3.0
-MajorGPA = 3.5
-MajorCredits = 45
-UpperLevelCredits = 45
-TotalCredits = 120
-Date = 10/03/2014
-
-StudentName = Alex Smith
-VID = 031239
-Grade = Senior
-Advising = True
-TotalGPA = 3.0
-MajorGPA = 3.5
-MajorCredits = 45
-UpperLevelCredits = 45
-TotalCredits = 120
-Date = 10/03/2014
-
-StudentName = Alex Smith
-VID = 031239
-Grade = Senior
-Advising = True
-TotalGPA = 3.0
-MajorGPA = 3.5
-MajorCredits = 45
-UpperLevelCredits = 45
-TotalCredits = 120
-Date = 10/03/2014
+FirstName: Bruce
+LastName: Robinson
+VID: 123
+Grade: Senior
+Advising: Yes
+TotalGPA: 3.0
+MajorGPA: 3.5
+MajorCredits: 45
+UpperLevelCredits: 45
+TotalCredits: 120
+Date: 12/07/2014
+FirstName: Chris
+LastName: Mosca
+VID: 456
+Grade: Senior
+Advising: Yes
+TotalGPA: 3.6
+MajorGPA: 3.9
+MajorCredits: 45
+UpperLevelCredits: 51
+TotalCredits: 126
+Date: 03/02/2015
+FirstName: Alex
+LastName: Whitehead
+VID: 789
+Grade: Senior
+Advising: Yes
+TotalGPA: 3.0
+MajorGPA: 3.5
+MajorCredits: 45
+UpperLevelCredits: 45
+TotalCredits: 120
+Date: 10/03/2014
