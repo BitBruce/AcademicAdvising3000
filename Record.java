@@ -4,14 +4,18 @@ import java.awt.event.*;
 
 
 class Record {
-	public JPanel recordPanel;
+	
 	JFrame frame1;
+	public JPanel main;//from main menu
+	
+	public JPanel recordPanel;
 	public String seekWord;
 	
 	
-	public Record(JFrame frame){
+	public Record(JFrame frame, JPanel m){
 		recordPanel = new JPanel(new GridBagLayout());
 		frame1 = frame;
+		main = m;
 		
 		recordMenu();
 		
@@ -25,7 +29,7 @@ class Record {
 		frame1.setVisible(true);
 	}
 	public void recordMenu(){
-		JLabel menuTitle = new JLabel("Record Academic Advising");
+		JLabel menuTitle = new JLabel("Record Advising");
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		
 		JLabel find = new JLabel("Enter Student Number");
@@ -36,8 +40,8 @@ class Record {
 							
 					public void actionPerformed(ActionEvent e){
 						seekWord = find1.getText();
-						//delete student at seekWord
-						//back to mainmenu
+						//edit advising field in db
+						displayPanel(main);
 					}
 				});
 		JButton back = new JButton("Back");
@@ -45,6 +49,7 @@ class Record {
 							
 					public void actionPerformed(ActionEvent e){
 						//back to mainmenu
+						displayPanel(main);
 					}
 				});
 

@@ -4,6 +4,9 @@ import java.awt.event.*;
 
 class ManageMenu {
 	
+	JFrame frame1;
+	public JPanel main;//from main menu
+	
 	public JPanel addStudent;
 	public JPanel editStudent;
 	public JPanel findStudent;
@@ -12,9 +15,7 @@ class ManageMenu {
 	public String seekWord;
 	public String [] general;
 	
-	JFrame frame1;//take out when put classes together
-	
-	public ManageMenu(JFrame frame){
+	public ManageMenu(JFrame frame, JPanel m){
 		managePanel = new JPanel(new GridBagLayout());
 		addStudent = new JPanel(new GridBagLayout());
 		editStudent = new JPanel(new GridBagLayout());
@@ -23,6 +24,8 @@ class ManageMenu {
 		general = new String[4];
 		//nothing
 		frame1 = frame;
+		main = m;
+		
 
 		
 		manageMenu();
@@ -85,7 +88,7 @@ class ManageMenu {
 		mainMenuButton.setPreferredSize(new Dimension(200, 25));
 		mainMenuButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				//mainMenu(); need to fix this so it goes back to mainMenu
+				displayPanel(main);
 			}
 		});
 		
@@ -159,7 +162,6 @@ class ManageMenu {
 		con.gridx = 0;
 		deleteStudent.add(back, con);
 		
-		displayPanel(deleteStudent);
 	}
 	
 	public void addStudentPanel(){
@@ -234,8 +236,6 @@ class ManageMenu {
 		con.gridx = 1;
 		addStudent.add(submit, con);
 		
-		//take this out when done
-		displayPanel(addStudent);
 	}
 	
 	public void findStudentPanel(){
@@ -281,8 +281,7 @@ class ManageMenu {
 		findStudent.add(submit, con);
 		con.gridx = 0;
 		findStudent.add(back, con);
-		
-		displayPanel(findStudent);
+
 	}
 	public void editStudentPanel(String first, String last, String number, String grade){
 		JLabel menuTitle = new JLabel("Edit Student");

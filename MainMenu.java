@@ -6,8 +6,7 @@ import java.awt.event.*;
 class MainMenu {
 	JFrame frame1;
 	JPanel buttons;
-	JPanel managePanel;
-	//JPanel recordPanel;
+
 	JPanel gradPanel;
 	JPanel reportsPanel;
 
@@ -23,15 +22,12 @@ class MainMenu {
 				buttons = new JPanel(new GridBagLayout());
 
 				//set up contructor when I figure this out
-				managePanel = new JPanel(new GridBagLayout());
-				//recordPanel = new JPanel(new GridBagLayout());
+
 				gradPanel = new JPanel(new GridBagLayout());
 				reportsPanel = new JPanel(new GridBagLayout());
 				
 				
 				makeButtons();
-				//manageMenu();
-				//recordMenu();
 				gradMenu();
 				reportsMenu();
 				
@@ -54,7 +50,7 @@ class MainMenu {
 		manageInfo.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e){
-				ManageMenu x = new ManageMenu(frame1);
+				ManageMenu x = new ManageMenu(frame1, buttons);
 				//displayPanel(managePanel);
 			}
 		});
@@ -64,7 +60,7 @@ class MainMenu {
 		recordAdv.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
-				Record x = new Record(frame1);
+				Record x = new Record(frame1, buttons);
 			}
 		});
 		
