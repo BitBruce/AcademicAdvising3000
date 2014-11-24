@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * HOW TO USE:
  * 
  * Create a StudentModule object which will create an ArrayList of students from the text file.
- * 
+ * Then call its methods.
  */
 public class StudentModule {
 	
@@ -36,7 +36,7 @@ public class StudentModule {
 	 */
 	public String getStudentName(int id) {
 		
-		Student newStudent = findStudent(id);
+		Student newStudent = getStudent(id);
 		
 		if (newStudent != null) {
 			
@@ -49,7 +49,7 @@ public class StudentModule {
 	/*
 	 * Search for a student by ID
 	 */
-	public Student findStudent(int id) {
+	public Student getStudent(int id) {
 		
 		for (Student i : students) {
 			
@@ -74,25 +74,4 @@ public class StudentModule {
 	// TODO: Retrieve info (send necessary info to front end)
 	// TODO: Save info to text file
 	// TODO: Delete a student
-	
-	/*
-	 * TEST CASES BELOW
-	 
-	public String getNameFromFirstStudent() {
-		
-		ArrayList<Student> students = StudentSerializer.deserializeTextToStudents();
-		
-		return (students.get(0).getFirstName() + " " + students.get(0).getLastName());
-	}
-	
-	public String getNameFromAStudent(int num) {
-		
-		// if the text file isn't empty // if the list isn't empty
-		if (students.size() > 0) {
-			return (students.get(num).getFirstName() + " " + students.get(num).getLastName());
-		} else {
-			return "No students available.";
-		}
-	}
-	*/
 }
