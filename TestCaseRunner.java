@@ -8,25 +8,7 @@ public class TestCaseRunner {
 		StudentModule run = new StudentModule();
 		
 		/*
-		 * Test case: Simply print first student's name
-		 */
-		//System.out.println(run.getNameFromFirstStudent());
-		
-		/*
-		 * Test case: Simply print first student's name
-		 */
-		//run.addStudent();
-		//System.out.println(run.getNameFromAStudent(2));
-		
-		/*
-		 * Test case: Get name from searching by ID
-		 */
-		//System.out.println(run.getStudentName(123));
-		// The most interesting bug I've found. It prints 154. Integer.toString() and String.valueOf() does not work
-		//System.out.println(0232);
-		
-		/*
-		 * Test case: Print the info to the text file
+		 * Test case: Print a new student to the text file
 		 */
 		//run.addStudent();
 		//run.saveStudentInfo();
@@ -41,6 +23,13 @@ public class TestCaseRunner {
 		 * Test case: Read more students from another file and save to main file
 		 */
 		//run.addMoreStudentsFromNewFile("NewStudentsInfo.txt");
+		//run.saveStudentInfo();
+		
+		/*
+		 * Test case: Testing to see if changing a Student object that is in an ArrayList will change the object IN the ArrayList
+		 */
+		//Student stu = run.getStudent(123);
+		//stu.setFirstName("Stu");
 		//run.saveStudentInfo();
 	}
 }

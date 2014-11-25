@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class StudentModule {
 	
 	// TODO: Retrieve info (send necessary info to front end)
-		// 		Note: Currently, I'm just passing a Student object to him
-	
+	// Note: Currently, a Student object is just being passed to the front end
+
 	private static final String fileName = "StudentInfo.txt";
 	private ArrayList<Student> students;
 	
