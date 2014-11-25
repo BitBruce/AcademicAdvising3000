@@ -42,6 +42,7 @@ class Record {
 						seekWord = find1.getText();
 						//edit advising field in db
 						displayPanel(main);
+						find1.setText(null);
 					}
 				});
 		JButton back = new JButton("Back");
@@ -50,6 +51,7 @@ class Record {
 					public void actionPerformed(ActionEvent e){
 						//back to mainmenu
 						displayPanel(main);
+						find1.setText(null);
 					}
 				});
 

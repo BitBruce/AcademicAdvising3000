@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 class ManageMenu {
 	
-	JFrame frame1;
+	public JFrame frame1;
 	public JPanel main;//from main menu
 	
 	public JPanel addStudent;
@@ -13,7 +13,8 @@ class ManageMenu {
 	public JPanel deleteStudent;
 	public JPanel managePanel;
 	public String seekWord;
-	public String [] general;
+
+	public StudentModule stud;
 	
 	public ManageMenu(JFrame frame, JPanel m){
 		managePanel = new JPanel(new GridBagLayout());
@@ -21,13 +22,12 @@ class ManageMenu {
 		editStudent = new JPanel(new GridBagLayout());
 		findStudent = new JPanel(new GridBagLayout());
 		deleteStudent = new JPanel(new GridBagLayout());
-		general = new String[4];
 		//nothing
 		frame1 = frame;
 		main = m;
 		
 
-		
+		stud = new StudentModule();
 		manageMenu();
 		addStudentPanel();
 		deleteStudentPanel();
@@ -183,13 +183,17 @@ class ManageMenu {
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						general[0] = a1.getText();
+						/*general[0] = a1.getText();
 						general[1] = b1.getText();
 						general[2] = c1.getText();
-						general[3] = d1.getText();
+						general[3] = d1.getText();*/
 						//submit text fields and switch back to managePanel
 						
 						displayPanel(managePanel);
+						a1.setText(null);
+						b1.setText(null);
+						c1.setText(null);
+						d1.setText(null);
 						
 					}
 				});
@@ -199,6 +203,10 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						//display managePanel
 						displayPanel(managePanel);
+						a1.setText(null);
+						b1.setText(null);
+						c1.setText(null);
+						d1.setText(null);
 					}
 				});
 		
@@ -251,7 +259,9 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						seekWord = find1.getText();
 						//find student at seekWord and get the appropriate Strings back
-						editStudentPanel("a","b","c","d");//use the found stuff
+						Student test = stud.findStudent(123);
+						editStudentPanel(test);//use the found stuff
+						find1.setText(null);
 					}
 				});
 		JButton back = new JButton("Back");
@@ -283,7 +293,8 @@ class ManageMenu {
 		findStudent.add(back, con);
 
 	}
-	public void editStudentPanel(String first, String last, String number, String grade){
+	public void editStudentPanel(Student student){
+		editStudent.removeAll();
 		JLabel menuTitle = new JLabel("Edit Student");
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		
@@ -293,22 +304,27 @@ class ManageMenu {
 		JLabel d = new JLabel("Grade");
 		
 		
-		JTextField a1 = new JTextField(first, 5);//First Name
-		JTextField b1 = new JTextField(last, 5);//Last Name
-		JTextField c1 = new JTextField(number, 5);//Student Number
-		JTextField d1 = new JTextField(grade, 5);//Grade
+		JTextField a1 = new JTextField(student.getFirstName(), 5);//First Name
+		JTextField b1 = new JTextField(student.getLastName(), 5);//Last Name
+		JTextField c1 = new JTextField((Integer.toString(student.getIdNumber())), 5);//Student Number
+		JTextField d1 = new JTextField(student.getGrade(), 5);//Grade
 		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						general[0] = a1.getText();
-						general[1] = b1.getText();
-						general[2] = c1.getText();
-						general[3] = d1.getText();
+						student.setFirstName(a1.getText());
+						student.setLastName(b1.getText());
+						//student.setIdNumber(c1.getText()); need to switch this to string
+						student.setGrade(d1.getText());
 						//send general to back end and display managePanel
 						
 						displayPanel(managePanel);
+						a1.setText(null);
+						b1.setText(null);
+						c1.setText(null);
+						d1.setText(null);
+						
 					}
 				});
 		JButton back = new JButton("Back");
@@ -317,6 +333,10 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						//switch back to managePanel
 						displayPanel(managePanel);
+						a1.setText(null);
+						b1.setText(null);
+						c1.setText(null);
+						d1.setText(null);
 					}
 				});
 		
@@ -354,7 +374,7 @@ class ManageMenu {
 		con.gridx = 1;
 		editStudent.add(submit, con);
 		
-		
+		editStudent.revalidate();
 		displayPanel(editStudent);
 	}
 }
