@@ -1,14 +1,15 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class StudentSerializer {
-	private static final String fileName = "C:\\Users\\Geckomyecho\\workspace\\AcademicAdvising3000\\src\\StudentInfo.txt";
 	
 	/* 
 	 * Creates an ArrayList of Student objects from parsing the text file
 	 */
-	public static ArrayList<Student> deserializeTextToStudents() {
+	public static ArrayList<Student> deserializeTextToStudents(String fileName) {
 		
 		ArrayList<String> studentText = new ArrayList<String>();
 		ArrayList<Student> students = new ArrayList<Student>();
@@ -24,20 +25,14 @@ public class StudentSerializer {
 				
 				// TODO: Should skip a blank line so text file can be better organized
 				
-				// if it encounters the next student, make a student object and reset the text arraylist
-				helperAddStudent(studentText, students);
-				
-				//System.out.println("STUDENT TEXT SIZE = " + studentText.size());
+				helperCreateStudent(studentText, students);
 				
 				int lastIndex = line.lastIndexOf(":");
 			    studentText.add(line.substring(lastIndex + 1).trim());
-			    
-			    //System.out.println("Line: " + line);
-			    //System.out.println("Trim: " + line.substring(lastIndex + 1).trim());
 			}
 			
-			// this is here because the while loop stops before it creates the last student
-			helperAddStudent(studentText, students);
+			// this is here because the while loop stops before it creates the last student. make it better?
+			helperCreateStudent(studentText, students);
 			
 			br.close();
 		}
@@ -50,14 +45,47 @@ public class StudentSerializer {
 	}
 	
 	/*
-	 * Adds a student to the arraylist from the arraylist of input strings
+	 * Writes the ArrayList<Student> to the file
 	 */
-	private static void helperAddStudent(ArrayList<String> studentText, ArrayList<Student> students) {
+	public static void serializeStudentsToText(String fileName, ArrayList<Student> students) {
+		
+		PrintWriter writer;
+		
+		try {
+			
+			writer = new PrintWriter(fileName);
+			
+			for (Student i : students) {
+				  writer.write("FirstName: " + i.getFirstName() + "\r\n");
+				  writer.write("LastName: " + i.getLastName() + "\r\n");
+				  writer.write("VID: " + i.getIdNumber() + "\r\n");
+				  writer.write("Grade: " + i.getGrade() + "\r\n");
+				  writer.write("Advising: " + (i.isAdvising() ? "Yes" : "No") + "\r\n");
+				  writer.write("TotalGPA: " + i.getTotalGPA() + "\r\n");
+				  writer.write("MajorGPA: " + i.getMajorGPA() + "\r\n");
+				  writer.write("MajorCredits: " + i.getMajorCredits() + "\r\n");
+				  writer.write("UpperLevelCredits: " + i.getUpperLevelCredits() + "\r\n");
+				  writer.write("TotalCredits: " + i.getTotalCredits() + "\r\n");
+				  writer.write("Date: " + i.getDate() + "\r\n");
+			}
+			
+			writer.close();
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * PRIVATE: Adds a student to the arraylist from the arraylist of input strings
+	 */
+	private static void helperCreateStudent(ArrayList<String> studentText, ArrayList<Student> students) {
 
 		// This method's function is to reduce code duplication in deserializeTextToStudents() until
 		// it can successfully add the last student (fix while loop)
 		
-		if (studentText.size() > 10) {
+		if ( studentText.size() > 10 ) {
 			
 			/* String firstName, String lastName, 
 			 * int idNumber, String grade, boolean advising, 

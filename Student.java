@@ -82,20 +82,6 @@ public class Student {
 		this.date = date;
 	}
 	
-	
-	/**
-	 * @param firstName
-	 * @param lastName
-	 * @param idNumber
-	 * @param grade
-	 * @param advising
-	 * @param totalGPA
-	 * @param majorGPA
-	 * @param majorCredits
-	 * @param upperLevelCredits
-	 * @param totalCredits
-	 * @param date
-	 */
 	public Student(String firstName, String lastName, int idNumber,
 			String grade, boolean advising, double totalGPA, double majorGPA,
 			double majorCredits, double upperLevelCredits, double totalCredits,
@@ -117,8 +103,8 @@ public class Student {
 	// Default Constructor
 	public Student() {
 		this.firstName = "Nate";
-		this.lastName = "SwoleBoy";
-		this.idNumber = 0;
+		this.lastName = "Whitehead";
+		this.idNumber = 111;
 		this.grade = "eSports";
 		this.advising = false;
 		this.totalGPA = 0;
@@ -126,6 +112,6 @@ public class Student {
 		this.majorCredits = 0;
 		this.upperLevelCredits = 0;
 		this.totalCredits = 0;
-		this.date = "nah";
+		this.date = "no date";
 	}
 }
