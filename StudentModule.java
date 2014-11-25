@@ -111,9 +111,8 @@ public class StudentModule {
 	/*
 	 * Add a student
 	 */
-	public void addStudent() {
+	public void addStudent(Student newStudent) {
 		
-		Student newStudent = new Student();
 		students.add(newStudent);
 		
 		// save file
