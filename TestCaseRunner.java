@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /*
  * For unit testing purposes, not to be integrated into main solution.
  */
@@ -18,7 +16,7 @@ public class TestCaseRunner {
 		/*
 		 * Test case: Delete a student and save
 		 */
-		//run.deleteStudent(456);
+		//run.deleteStudent("456");
 		//run.saveStudentInfo();
 		
 		/*

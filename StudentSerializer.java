@@ -31,7 +31,7 @@ public class StudentSerializer {
 			    studentText.add(line.substring(lastIndex + 1).trim());
 			}
 			
-			// this is here because the while loop stops before it creates the last student. make it better?
+			// this is here because the while loop stops before it creates the last student. rewrite this?
 			helperCreateStudent(studentText, students);
 			
 			br.close();
@@ -60,7 +60,7 @@ public class StudentSerializer {
 				  writer.write("LastName: " + i.getLastName() + "\r\n");
 				  writer.write("VID: " + i.getIdNumber() + "\r\n");
 				  writer.write("Grade: " + i.getGrade() + "\r\n");
-				  writer.write("Advising: " + (i.isAdvising() ? "Yes" : "No") + "\r\n");
+				  writer.write("Advising: " + i.getAdvising() + "\r\n");
 				  writer.write("TotalGPA: " + i.getTotalGPA() + "\r\n");
 				  writer.write("MajorGPA: " + i.getMajorGPA() + "\r\n");
 				  writer.write("MajorCredits: " + i.getMajorCredits() + "\r\n");
@@ -87,15 +87,10 @@ public class StudentSerializer {
 		
 		if (studentText.size() > 10) {
 			
-			/* String firstName, String lastName, 
-			 * int idNumber, String grade, boolean advising, 
-			 * double totalGPA, double majorGPA, double majorCredits, 
-			 * double upperLevelCredits, double totalCredits, String date */
-			
 			students.add(new Student(studentText.remove(0), studentText.remove(0), 
-		    		Integer.parseInt(studentText.remove(0)), studentText.remove(0), ((studentText.remove(0) == "Yes") ? true : false ), 
-		    		Double.parseDouble(studentText.remove(0)), Double.parseDouble(studentText.remove(0)), Double.parseDouble(studentText.remove(0)), 
-		    		Double.parseDouble(studentText.remove(0)), Double.parseDouble(studentText.remove(0)), studentText.remove(0)));
+		    		studentText.remove(0), studentText.remove(0), studentText.remove(0), 
+		    		studentText.remove(0), studentText.remove(0), studentText.remove(0), 
+		    		studentText.remove(0), studentText.remove(0), studentText.remove(0)));
 			
 			studentText = new ArrayList<String>();	
 		}

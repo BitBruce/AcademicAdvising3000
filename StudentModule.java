@@ -1,15 +1,6 @@
 import java.util.ArrayList;
 
-/*
- * HOW TO USE:
- * 
- * Create a StudentModule object which will create an ArrayList of students from the text file.
- * Then call its methods.
- */
 public class StudentModule {
-	
-	// TODO: Retrieve info (send necessary info to front end)
-	// Note: Currently, a Student object is just being passed to the front end
 
 	private static final String fileName = "StudentInfo.txt";
 	private ArrayList<Student> students;
@@ -25,11 +16,11 @@ public class StudentModule {
 	/*
 	 * Search for a student by ID
 	 */
-	public Student getStudent(int id) {
+	public Student getStudent(String id) {
 		
 		for (Student i : students) {
 			
-			if (i.getIdNumber() == id) {
+			if (i.getIdNumber().equals(id)) {
 				
 				return i;
 			}
@@ -39,7 +30,7 @@ public class StudentModule {
 	}
 	
 	/*
-	 * Simply return ArrayList<Student>
+	 * Returns the list of all students
 	 */
 	public ArrayList<Student> getAllStudents() {
 		
@@ -47,7 +38,7 @@ public class StudentModule {
 	}
 	
 	/*
-	 * Return an ArrayList<Student> before a date
+	 * Return a list of students whose date is before parameter date
 	 */
 	public ArrayList<Student> getStudentsByDate(String newDate) {
 		
@@ -95,7 +86,7 @@ public class StudentModule {
 	}
 	
 	/*
-	 * Flush students to file
+	 * Save students to file
 	 */
 	public void saveStudentInfo() {
 		
@@ -128,9 +119,9 @@ public class StudentModule {
 	}
 	
 	/*
-	 * Deletes a student from the list
+	 * Deletes a student
 	 */
-	public void deleteStudent(int id) {
+	public void deleteStudent(String id) {
 		
 		students.remove(getStudent(id));
 		
