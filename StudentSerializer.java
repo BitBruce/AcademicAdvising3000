@@ -85,7 +85,7 @@ public class StudentSerializer {
 		// This method's function is to reduce code duplication in deserializeTextToStudents() until
 		// it can successfully add the last student (fix while loop)
 		
-		if ( studentText.size() > 10 ) {
+		if (studentText.size() > 10) {
 			
 			/* String firstName, String lastName, 
 			 * int idNumber, String grade, boolean advising, 

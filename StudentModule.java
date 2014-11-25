@@ -32,7 +32,6 @@ public class StudentModule {
 			if (i.getIdNumber() == id) {
 				
 				return i;
-				
 			}
 		}
 		
@@ -115,13 +114,13 @@ public class StudentModule {
 		
 		students.add(newStudent);
 		
-		// save file
+		this.saveStudentInfo();
 	}
 
 	/*
 	 * Add more students from a new text file
 	 */
-	public void addMoreStudentsFromNewFile(String newFileName) {
+	public void importStudents(String newFileName) {
 		
 		ArrayList<Student> newStudents = StudentSerializer.deserializeTextToStudents(newFileName);
 		
@@ -130,7 +129,7 @@ public class StudentModule {
 			students.add(i);
 		}
 		
-		// save file
+		this.saveStudentInfo();
 	}
 	
 	/*
@@ -140,7 +139,6 @@ public class StudentModule {
 		
 		students.remove(getStudent(id));
 		
-		// save file
+		this.saveStudentInfo();
 	}
-	
 }
