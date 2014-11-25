@@ -60,11 +60,6 @@ public class StudentModule {
 			// if date is before, add to newStudents
 			date = i.getDate();
 			
-			//System.out.println("Date: " + date);
-			//System.out.println("Year: " + date.substring(6, date.length()));
-			//System.out.println("Month: " + date.substring(0, 2));
-			//System.out.println("Day: " + date.substring(3, 5));
-			
 			/*
 			 *  I would ideally like to use a Date data type of some sort, or write a method to handle the specific parsing of date string, because the substrings below are messy
 			 *  Interesting note: Something weird happens with leading zeros when Integer.parseInt();
