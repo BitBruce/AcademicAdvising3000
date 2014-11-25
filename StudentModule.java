@@ -67,7 +67,7 @@ public class StudentModule {
 			//System.out.println("Day: " + date.substring(3, 5));
 			
 			/*
-			 *  I would ideally like to use a Date data type of some sort, or write a method to handle the specific parsing of date string
+			 *  I would ideally like to use a Date data type of some sort, or write a method to handle the specific parsing of date string, because the substrings below are messy
 			 *  Interesting note: Something weird happens with leading zeros when Integer.parseInt();
 			 *  IMPORTANT: Make sure date follows mm/dd/yyyy and not mm/d/yyyy etc.
 			 */

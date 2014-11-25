@@ -37,7 +37,7 @@ public class TestCaseRunner {
 		/*
 		 * Test case: Get students by date
 		 */
-		ArrayList<Student> students = run.getStudentsByDate("10/03/2012");
-		for (Student i : students) { System.out.println(i.getFirstName()); }
+		//ArrayList<Student> students = run.getStudentsByDate("10/03/2012");
+		//for (Student i : students) { System.out.println(i.getFirstName()); }
 	}
 }
