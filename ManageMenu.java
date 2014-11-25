@@ -81,7 +81,7 @@ class ManageMenu {
 		importStudentButton.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						//have to add import capabilities
+						//import capabilities
 						File input;
 						String filename, dir;
 						JFileChooser c = new JFileChooser();
@@ -152,6 +152,7 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						//back to managePanel
 						displayPanel(managePanel);
+						//run.deleteStudent(id);
 					}
 				});
 		
@@ -185,11 +186,13 @@ class ManageMenu {
 		JLabel b = new JLabel("Last Name");
 		JLabel c = new JLabel("Student Number");
 		JLabel d = new JLabel("Grade");
+		JLabel e = new JLabel("Grad Submission(MM/DD/YYYY");
 		
-		JTextField a1 = new JTextField(5);//First Name
-		JTextField b1 = new JTextField(5);//Last Name
-		JTextField c1 = new JTextField(5);//Student Number
-		JTextField d1 = new JTextField(5);//Grade
+		JTextField a1 = new JTextField(7);//First Name
+		JTextField b1 = new JTextField(7);//Last Name
+		JTextField c1 = new JTextField(7);//Student Number
+		JTextField d1 = new JTextField(7);//Grade
+		JTextField e1 = new JTextField(7);//grad submission date
 		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
@@ -200,12 +203,13 @@ class ManageMenu {
 						general[2] = c1.getText();
 						general[3] = d1.getText();*/
 						//submit text fields and switch back to managePanel
-						
+						//run.addStudent(student)
 						displayPanel(managePanel);
 						a1.setText(null);
 						b1.setText(null);
 						c1.setText(null);
 						d1.setText(null);
+						e1.setText(null);
 						
 					}
 				});
@@ -219,6 +223,7 @@ class ManageMenu {
 						b1.setText(null);
 						c1.setText(null);
 						d1.setText(null);
+						e1.setText(null);
 					}
 				});
 		
@@ -252,9 +257,14 @@ class ManageMenu {
 		addStudent.add(d, con);
 		
 		con.gridy = 6;
-		addStudent.add(back, con);
+		addStudent.add(e, con);
 		con.gridx = 1;
+		addStudent.add(e1, con);
+		
+		con.gridy = 7;
 		addStudent.add(submit, con);
+		con.gridx = 0;
+		addStudent.add(back, con);
 		
 	}
 	
@@ -271,7 +281,8 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						seekWord = find1.getText();
 						//find student at seekWord and get the appropriate Strings back
-						Student test = stud.findStudent(123);
+						Student test = stud.findStudent(123);//change to string
+						//run.deleteStudent(id);
 						editStudentPanel(test);//use the found stuff
 						find1.setText(null);
 					}
@@ -314,12 +325,13 @@ class ManageMenu {
 		JLabel b = new JLabel("Last Name");
 		JLabel c = new JLabel("Student Number");
 		JLabel d = new JLabel("Grade");
+		JLabel e = new JLabel("Grad Submission(MM/DD/YYYY");
 		
-		
-		JTextField a1 = new JTextField(student.getFirstName(), 5);//First Name
-		JTextField b1 = new JTextField(student.getLastName(), 5);//Last Name
-		JTextField c1 = new JTextField((Integer.toString(student.getIdNumber())), 5);//Student Number
-		JTextField d1 = new JTextField(student.getGrade(), 5);//Grade
+		JTextField a1 = new JTextField(student.getFirstName(), 7);//First Name
+		JTextField b1 = new JTextField(student.getLastName(), 7);//Last Name
+		JTextField c1 = new JTextField((Integer.toString(student.getIdNumber())), 7);//Student Number
+		JTextField d1 = new JTextField(student.getGrade(), 7);//Grade
+		JTextField e1 = new JTextField(student.getDate(), 7);//grad submisison date
 		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
@@ -329,13 +341,16 @@ class ManageMenu {
 						student.setLastName(b1.getText());
 						//student.setIdNumber(c1.getText()); need to switch this to string
 						student.setGrade(d1.getText());
+						//set submission
 						//send general to back end and display managePanel
 						
+						//run.addStudent(student)
 						displayPanel(managePanel);
 						a1.setText(null);
 						b1.setText(null);
 						c1.setText(null);
 						d1.setText(null);
+						e1.setText(null);
 						
 					}
 				});
@@ -349,6 +364,8 @@ class ManageMenu {
 						b1.setText(null);
 						c1.setText(null);
 						d1.setText(null);
+						e1.setText(null);
+						
 					}
 				});
 		
@@ -382,9 +399,14 @@ class ManageMenu {
 		editStudent.add(d, con);
 		
 		con.gridy = 6;
-		editStudent.add(back, con);
+		editStudent.add(e, con);
 		con.gridx = 1;
+		editStudent.add(e1, con);
+		
+		con.gridy = 7;
 		editStudent.add(submit, con);
+		con.gridx = 0;
+		editStudent.add(back, con);
 		
 		editStudent.revalidate();
 		displayPanel(editStudent);
