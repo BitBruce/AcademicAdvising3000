@@ -1,7 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.nio.file.Path;
+import java.io.File;
 class ManageMenu {
 	
 	public JFrame frame1;
@@ -81,6 +82,17 @@ class ManageMenu {
 							
 					public void actionPerformed(ActionEvent e){
 						//have to add import capabilities
+						File input;
+						String filename, dir;
+						JFileChooser c = new JFileChooser();
+					 	// Demonstrate "Open" dialog:
+					 	int rVal = c.showOpenDialog(managePanel);
+						input = new File(c.getSelectedFile().getPath());
+					    filename= c.getSelectedFile().getName();
+					    dir = c.getCurrentDirectory().toString();
+				  	    
+						//CALL IMPORT METHOD FROM BRUCES CODE
+						System.out.println(String.valueOf(input));
 					}
 				});
 		
