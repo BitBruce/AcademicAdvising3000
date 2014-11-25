@@ -40,7 +40,10 @@ class Record {
 							
 					public void actionPerformed(ActionEvent e){
 						seekWord = find1.getText();
-						//edit advising field in db
+						//.getStudent(seekWord);
+						//.deleteStudent(seekWord);
+						//setAdvising() to yes
+						//addStudent(student)
 						displayPanel(main);
 						find1.setText(null);
 					}

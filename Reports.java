@@ -203,7 +203,7 @@ class Reports {
 
 		StudentModule run = new StudentModule();
 		ArrayList<Student> students = new ArrayList(run.getAllStudents());//change to just get grad students when ready
-		
+		//getStudentsByDate("11/11/2013");
 		c.insets = new Insets(10,10,10,10);
 		c.gridy = 0;
 		gradReportPanel.add(new JLabel("Name"),c);

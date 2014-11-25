@@ -30,7 +30,7 @@ class MainMenu {
 		
 		comboLbl.setFont(new Font("Arial", 2, 28));
 		JButton manageInfo = new JButton("Manage Student Information");
-		manageInfo.setSize(new Dimension(200, 25));
+		manageInfo.setPreferredSize(new Dimension(250, 25));
 		
 		manageInfo.addActionListener(new ActionListener() {
 			
@@ -41,7 +41,7 @@ class MainMenu {
 		});
 		
 		JButton recordAdv = new JButton("Record Academic Advising");
-		recordAdv.setPreferredSize(new Dimension(200, 25));
+		recordAdv.setPreferredSize(new Dimension(250, 25));
 		recordAdv.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
@@ -50,7 +50,7 @@ class MainMenu {
 		});
 		
 		JButton gradSub = new JButton("Graduation Submission");
-		gradSub.setMinimumSize(new Dimension(200, 25));
+		gradSub.setPreferredSize(new Dimension(250, 25));
 		gradSub.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
@@ -59,7 +59,7 @@ class MainMenu {
 		});
 		
 		JButton reports = new JButton("Find Reports");
-		reports.setMinimumSize(new Dimension(200, 25));
+		reports.setPreferredSize(new Dimension(250, 25));
 		reports.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
