@@ -48,6 +48,59 @@ public class StudentModule {
 	}
 	
 	/*
+	 * Return an ArrayList<Student> before a date
+	 */
+	public ArrayList<Student> getStudentsByDate(String newDate) {
+		
+		ArrayList<Student> newStudents = new ArrayList<Student>();
+		
+		String date;
+		
+		for (Student i : students) {
+			
+			// if date is before, add to newStudents
+			date = i.getDate();
+			
+			//System.out.println("Date: " + date);
+			//System.out.println("Year: " + date.substring(6, date.length()));
+			//System.out.println("Month: " + date.substring(0, 2));
+			//System.out.println("Day: " + date.substring(3, 5));
+			
+			/*
+			 *  I would ideally like to use a Date data type of some sort, or write a method to handle the specific parsing of date string
+			 *  Interesting note: Something weird happens with leading zeros when Integer.parseInt();
+			 *  IMPORTANT: Make sure date follows mm/dd/yyyy and not mm/d/yyyy etc.
+			 */
+			
+			// if year < year
+			if ( Integer.parseInt(date.substring(6, date.length())) < Integer.parseInt(newDate.substring(6, newDate.length())) )  {
+				
+				newStudents.add(i);
+			}
+			// else if year == year, compare months
+			else if ( Integer.parseInt(date.substring(6, date.length())) == Integer.parseInt(newDate.substring(6, newDate.length())) ) {
+				
+				// if month < month
+				if ( Integer.parseInt(date.substring(0, 2)) < Integer.parseInt(newDate.substring(0, 2)) ) {
+					
+					newStudents.add(i);
+				}
+				// else if month == month, compare days
+				else if ( Integer.parseInt(date.substring(0, 2)) == Integer.parseInt(newDate.substring(0, 2)) ) {
+					
+					// if day < day
+					if ( Integer.parseInt(date.substring(3, 5)) <= Integer.parseInt(newDate.substring(3, 5)) ) {
+						
+						newStudents.add(i);
+					}
+				}
+			}
+		}
+		
+		return newStudents;
+	}
+	
+	/*
 	 * Flush students to file
 	 */
 	public void saveStudentInfo() {

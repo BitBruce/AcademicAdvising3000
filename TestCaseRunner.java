@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
  * For unit testing purposes, not to be integrated into main solution.
  */
@@ -31,5 +33,11 @@ public class TestCaseRunner {
 		//Student stu = run.getStudent(123);
 		//stu.setFirstName("Stu");
 		//run.saveStudentInfo();
+		
+		/*
+		 * Test case: Get students by date
+		 */
+		ArrayList<Student> students = run.getStudentsByDate("10/03/2012");
+		for (Student i : students) { System.out.println(i.getFirstName()); }
 	}
 }
