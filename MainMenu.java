@@ -6,42 +6,23 @@ import java.awt.event.*;
 class MainMenu {
 	JFrame frame1;
 	JPanel buttons;
-	JPanel managePanel;
-	//JPanel recordPanel;
-	JPanel gradPanel;
-	JPanel reportsPanel;
-
 	
 	public MainMenu(){
 		//Create the frame
-				frame1 = new JFrame ("Academic Advising 3000");
-				//Set its size to 800x200 pixels
-				frame1.setSize (600,600);
-				//Prepare panel
-				frame1.setLocationRelativeTo(null);
-				
-				buttons = new JPanel(new GridBagLayout());
-
-				//set up contructor when I figure this out
-				managePanel = new JPanel(new GridBagLayout());
-				//recordPanel = new JPanel(new GridBagLayout());
-				gradPanel = new JPanel(new GridBagLayout());
-				reportsPanel = new JPanel(new GridBagLayout());
-				
-				
-				makeButtons();
-				//manageMenu();
-				//recordMenu();
-				gradMenu();
-				reportsMenu();
-				
-				//where the frme should start
-				frame1.getContentPane().removeAll();
-				frame1.add(buttons, BorderLayout.CENTER);
-				frame1.repaint();
-				
-				
-				frame1.setVisible (true);
+		frame1 = new JFrame ("Academic Advising 3000");
+		//Set its size to 800x200 pixels
+		frame1.setSize (600,600);
+		//Prepare panel
+		frame1.setLocationRelativeTo(null);
+		
+		buttons = new JPanel(new GridBagLayout());
+		makeButtons();
+			
+		//where the frame should start
+		frame1.getContentPane().removeAll();
+		frame1.add(buttons, BorderLayout.CENTER);
+		frame1.repaint();
+		frame1.setVisible (true);
 						
 	}
 	public void makeButtons(){
@@ -54,7 +35,7 @@ class MainMenu {
 		manageInfo.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e){
-				ManageMenu x = new ManageMenu(frame1);
+				ManageMenu x = new ManageMenu(frame1, buttons);
 				//displayPanel(managePanel);
 			}
 		});
@@ -64,7 +45,7 @@ class MainMenu {
 		recordAdv.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
-				Record x = new Record(frame1);
+				Record x = new Record(frame1, buttons);
 			}
 		});
 		
@@ -73,7 +54,7 @@ class MainMenu {
 		gradSub.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
-				displayPanel(gradPanel);
+				GradSub x = new GradSub(frame1, buttons);
 			}
 		});
 		
@@ -82,7 +63,7 @@ class MainMenu {
 		reports.addActionListener(new ActionListener() {
 					
 			public void actionPerformed(ActionEvent e){
-				displayPanel(reportsPanel);
+				Reports x = new Reports(frame1, buttons);
 			}
 		});
 		
@@ -124,53 +105,6 @@ class MainMenu {
 	}
 
 
-	public void gradMenu(){
-		
-			frame1.getContentPane().removeAll();
-			
-			JLabel menuTitle = new JLabel("Graduation Submission");
-			menuTitle.setFont(new Font("Arial", 2, 28));
-			
-			JButton mainMenu = new JButton("Main Menu");
-			mainMenu.setPreferredSize(new Dimension(200, 25));
-			mainMenu.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e){
-					mainMenu();
-				}
-			});
-
-			GridBagConstraints c = new GridBagConstraints();
-			Insets insets = frame1.getInsets();
-							
-			c.insets = new Insets(50, 50, 50, 50);
-			gradPanel.add(menuTitle, c);
-			c.gridy = 2;
-			gradPanel.add(mainMenu, c);
-			
-
-	}
-	public void reportsMenu(){
-			JLabel menuTitle = new JLabel("Reports");
-			menuTitle.setFont(new Font("Arial", 2, 28));
-			
-			JButton mainMenu = new JButton("Main Menu");
-			mainMenu.setPreferredSize(new Dimension(200, 25));
-			mainMenu.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e){
-					mainMenu();
-				}
-			});
-
-			GridBagConstraints c = new GridBagConstraints();
-			Insets insets = frame1.getInsets();
-			Dimension size = menuTitle.getPreferredSize();
-			reportsPanel.setBounds(250+insets.left, 50+insets.top, size.width, size.height);
-							
-			c.insets = new Insets(50, 50, 50, 50);
-			
-			reportsPanel.add(menuTitle, c);
-			c.gridy = 2;
-			reportsPanel.add(mainMenu, c);
-
-	}
+	
+	
 }
