@@ -40,10 +40,12 @@ class Record {
 							
 					public void actionPerformed(ActionEvent e){
 						seekWord = find1.getText();
-						//.getStudent(seekWord);
-						//.deleteStudent(seekWord);
-						//setAdvising() to yes
-						//addStudent(student)
+						StudentModule run = new StudentModule();
+						Student boom = run.getStudent(seekWord);
+						
+						run.deleteStudent(seekWord);
+						boom.setAdvising("Yes");
+						run.addStudent(boom);
 						displayPanel(main);
 						find1.setText(null);
 					}
