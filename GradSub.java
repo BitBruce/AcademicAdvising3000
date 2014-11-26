@@ -80,7 +80,7 @@ class GradSub {
 						public void actionPerformed(ActionEvent e){
 							seekWord = find1.getText();
 							//find student at seekWord and get the appropriate Strings back
-							Student test = stud.findStudent(123);
+							Student test = stud.getStudent("123");//test case
 							gradSubmission(test);//use the found stuff
 							find1.setText(null);
 						}
@@ -126,21 +126,24 @@ class GradSub {
 			JLabel d = new JLabel("Upper Level Credits");
 			JLabel e = new JLabel("Total Credits");
 				
-			JTextField a1 = new JTextField(5);//GPA
-			JTextField b1 = new JTextField(5);//Major GPA
-			JTextField c1 = new JTextField(5);//Major Credits
-			JTextField d1 = new JTextField(5);//Upper Level Credits
-			JTextField e1 = new JTextField(5);//total Credits
+			JTextField a1 = new JTextField(student.getTotalGPA(), 5);//GPA
+			JTextField b1 = new JTextField(student.getMajorGPA(), 5);//Major GPA
+			JTextField c1 = new JTextField(student.getMajorCredits(), 5);//Major Credits
+			JTextField d1 = new JTextField(student.getUpperLevelCredits(), 5);//Upper Level Credits
+			JTextField e1 = new JTextField(student.getTotalCredits(), 5);//total Credits
 				
 			JButton submit = new JButton("Submit");//set this button
 			submit.addActionListener(new ActionListener() {
 								
 				public void actionPerformed(ActionEvent e){
-					/*general[0] = a1.getText();
-					general[1] = b1.getText();
-					general[2] = c1.getText();
-					general[3] = d1.getText();*/
-							
+					student.setTotalGPA(a1.getText());
+					student.setMajorGPA(b1.getText());
+					student.setMajorCredits(c1.getText());
+					student.setUpperLevelCredits(d1.getText());
+					student.setTotalCredits(e1.getText());
+					StudentModule run = new StudentModule();
+					run.deleteStudent(student.getIdNumber());
+					run.addStudent(student);
 					displayPanel(gradPanel);
 					a1.setText(null);
 					b1.setText(null);

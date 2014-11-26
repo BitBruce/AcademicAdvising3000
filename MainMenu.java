@@ -36,7 +36,6 @@ class MainMenu {
 			
 			public void actionPerformed(ActionEvent e){
 				ManageMenu x = new ManageMenu(frame1, buttons);
-				//displayPanel(managePanel);
 			}
 		});
 		

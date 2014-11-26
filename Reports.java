@@ -96,7 +96,7 @@ class Reports {
 			 	ArrayList<Student> toBeDisplayed = new ArrayList<Student>();
 				for(JCheckBox checkbox : checkboxes){
 					if(checkbox.isSelected()){
-						Student s = run.findStudent(Integer.parseInt(checkbox.getText()));//can make just string when bruce finishes
+						Student s = run.getStudent(checkbox.getText());//can make just string when bruce finishes
 						toBeDisplayed.add(s);
 					}
 					
@@ -117,7 +117,7 @@ class Reports {
 		Student boom;
 		for(int i = 0;i<students.size(); i++){
 			boom = students.get(i);
-			checkboxes[i] = new JCheckBox(Integer.toString(boom.getIdNumber()));
+			checkboxes[i] = new JCheckBox(boom.getIdNumber());
 		}
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -148,6 +148,14 @@ class Reports {
 		advisingReportPanel.removeAll();
 		JLabel menuTitle = new JLabel("Report");
 		menuTitle.setFont(new Font("Arial", 2, 28));
+		
+		JButton back = new JButton("Back");
+		back.setPreferredSize(new Dimension(200, 25));
+		back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				displayPanel(reportsPanel);
+			}
+		});
 		
 		GridBagConstraints c = new GridBagConstraints();
 		Insets insets = frame1.getInsets();
@@ -183,20 +191,29 @@ class Reports {
 			c.gridx = 0;
 			advisingReportPanel.add(new JLabel(student.getFirstName()+ " " + student.getLastName()), c);
 			c.gridx = 1;
-			advisingReportPanel.add(new JLabel(Integer.toString(student.getIdNumber())), c);
+			advisingReportPanel.add(new JLabel(student.getIdNumber()), c);
 			c.gridx = 2;
 			advisingReportPanel.add(new JLabel(student.getGrade()), c);
 			c.gridx = 3;
-			advisingReportPanel.add(new JLabel(String.valueOf(student.isAdvising())), c);
+			advisingReportPanel.add(new JLabel(student.getAdvising()), c);
 			c.gridx = 4;
 			advisingReportPanel.add(new JLabel(student.getDate()), c);
 		}
-		
+		c.gridy = counter+1;
+		advisingReportPanel.add(back, c);
 		advisingReportPanel.revalidate();
 		displayPanel(advisingReportPanel);
 		
 	}
 	public void gradReport(){
+		
+		JButton back = new JButton("Back");
+		back.setPreferredSize(new Dimension(200, 25));
+		back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				displayPanel(reportsPanel);
+			}
+		});
 		
 		GridBagConstraints c = new GridBagConstraints();
 		Insets insets = frame1.getInsets();
@@ -221,6 +238,7 @@ class Reports {
 		gradReportPanel.add(new JLabel("Submission Date"), c);
 		
 		for(Student student : students){
+			if(((student.getDate())!=null) && !(student.getDate().isEmpty()) && !(student.getDate().equals(""))){
 			c.gridy = 0;
 			gradReportPanel.add(new JLabel(student.getFirstName() + " " + student.getLastName() + " " + student.getIdNumber()),c);
 			c.gridy = 1;
@@ -235,7 +253,10 @@ class Reports {
 			gradReportPanel.add(new JLabel(String.valueOf(student.getTotalCredits())), c);
 			c.gridy = 6;
 			gradReportPanel.add(new JLabel(student.getDate()), c);
+			}
 		}
+		c.gridy=7;
+		gradReportPanel.add(back, c);
 		displayPanel(gradReportPanel);
 	}
 }
