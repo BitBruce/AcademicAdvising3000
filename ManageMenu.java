@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.nio.file.Path;
 import java.io.File;
+import java.util.ArrayList;
 class ManageMenu {
 	
 	public JFrame frame1;
@@ -27,8 +28,6 @@ class ManageMenu {
 		
 		manageMenu();
 		addStudentPanel();
-		deleteStudentPanel();
-		findStudentPanel();
 	}
 	
 	public void displayPanel(JPanel panel){
@@ -57,7 +56,7 @@ class ManageMenu {
 		editStudentButton.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						displayPanel(findStudent);
+						findStudentPanel();
 					}
 				});		
 		
@@ -66,7 +65,7 @@ class ManageMenu {
 		deleteStudentButton.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						displayPanel(deleteStudent);
+						deleteStudentPanel();
 					}
 				});
 		
@@ -126,23 +125,32 @@ class ManageMenu {
 
 	//give vnumber to delete
 	public void deleteStudentPanel(){
-
+		deleteStudent.removeAll();
 		JLabel menuTitle = new JLabel("Delete Student");
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		
 		JLabel find = new JLabel("Enter Student Number");
-		JTextField find1 = new JTextField(5);//Student Number
+		
+		StudentModule run = new StudentModule();
+		ArrayList<Student> students = run.getAllStudents();
+		String [] ids = new String[students.size()];
+		
+		Student boom;
+		for(int i = 0;i<students.size(); i++){
+			boom = students.get(i);
+			ids[i] = boom.getIdNumber();
+		}
+		JComboBox studentList = new JComboBox(ids);
 		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						seekWord = find1.getText();
+						seekWord = studentList.getSelectedItem().toString();
 						//delete student at seekWord
 						StudentModule run = new StudentModule();
 						run.deleteStudent(seekWord);//need to add popup
 						displayPanel(managePanel);
-						find1.setText("");
 					}
 				});
 		JButton back = new JButton("Back");
@@ -151,7 +159,6 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						//back to managePanel
 						displayPanel(managePanel);
-						find1.setText("");
 					}
 				});
 		
@@ -167,12 +174,13 @@ class ManageMenu {
 		con.gridy = 2;
 		deleteStudent.add(find, con);
 		con.gridx=1;
-		deleteStudent.add(find1, con);
+		deleteStudent.add(studentList, con);
 		
 		con.gridy = 3;
 		deleteStudent.add(submit, con);
 		con.gridx = 0;
 		deleteStudent.add(back, con);
+		displayPanel(deleteStudent);
 		
 	}
 	
@@ -185,13 +193,11 @@ class ManageMenu {
 		JLabel b = new JLabel("Last Name");
 		JLabel c = new JLabel("Student Number");
 		JLabel d = new JLabel("Grade");
-		JLabel e = new JLabel("Grad Submission(MM/DD/YYYY");
 		
 		JTextField a1 = new JTextField(7);//First Name
 		JTextField b1 = new JTextField(7);//Last Name
 		JTextField c1 = new JTextField(7);//Student Number
 		JTextField d1 = new JTextField(7);//Grade
-		JTextField e1 = new JTextField(7);//grad submission date
 		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
@@ -202,7 +208,7 @@ class ManageMenu {
 						boom.setLastName(b1.getText());
 						boom.setIdNumber(c1.getText());
 						boom.setGrade(d1.getText());
-						boom.setDate(e1.getText());
+						boom.setDate("");
 						//these are just for no errors, could have done this with contructor go back and fix
 						boom.setAdvising("No");
 						boom.setTotalGPA("");
@@ -218,7 +224,6 @@ class ManageMenu {
 						b1.setText(null);
 						c1.setText(null);
 						d1.setText(null);
-						e1.setText(null);
 						
 					}
 				});
@@ -232,7 +237,6 @@ class ManageMenu {
 						b1.setText(null);
 						c1.setText(null);
 						d1.setText(null);
-						e1.setText(null);
 					}
 				});
 		
@@ -266,36 +270,44 @@ class ManageMenu {
 		addStudent.add(d, con);
 		
 		con.gridy = 6;
-		addStudent.add(e, con);
-		con.gridx = 1;
-		addStudent.add(e1, con);
-		
-		con.gridy = 7;
-		addStudent.add(submit, con);
-		con.gridx = 0;
 		addStudent.add(back, con);
+		con.gridx = 1;
+		addStudent.add(submit, con);
+
 		
 	}
 	
 	public void findStudentPanel(){
+		findStudent.removeAll();
 		JLabel menuTitle = new JLabel("Edit Student");
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		
 		JLabel find = new JLabel("Enter Student Number");
-		JTextField find1 = new JTextField(5);//Student Number
+
 		
+		StudentModule run = new StudentModule();
+		ArrayList<Student> students = run.getAllStudents();
+		String [] ids = new String[students.size()];
+		
+		Student boom;
+		for(int i = 0;i<students.size(); i++){
+			boom = students.get(i);
+			ids[i] = boom.getIdNumber();
+		}
+		
+		JComboBox studentList = new JComboBox(ids);
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						seekWord = find1.getText();
+						seekWord = studentList.getSelectedItem().toString();
 						//find student at seekWord and get the appropriate Strings back
 						StudentModule run = new StudentModule();
 						Student test = run.getStudent(seekWord);//change to string
 						run.deleteStudent(seekWord);
 						System.out.print(test.getFirstName());
 						editStudentPanel(test);//use the found stuff
-						find1.setText(null);
+
 					}
 				});
 		JButton back = new JButton("Back");
@@ -319,12 +331,14 @@ class ManageMenu {
 		con.gridy = 2;
 		findStudent.add(find, con);
 		con.gridx=1;
-		findStudent.add(find1, con);
+		findStudent.add(studentList, con);
 		
 		con.gridy = 3;
 		findStudent.add(submit, con);
 		con.gridx = 0;
 		findStudent.add(back, con);
+		
+		displayPanel(findStudent);
 
 	}
 	public void editStudentPanel(Student student){
@@ -336,13 +350,13 @@ class ManageMenu {
 		JLabel b = new JLabel("Last Name");
 		JLabel c = new JLabel("Student Number");
 		JLabel d = new JLabel("Grade");
-		JLabel e = new JLabel("Grad Submission(MM/DD/YYYY");
+
 		
 		JTextField a1 = new JTextField(student.getFirstName(), 7);//First Name
 		JTextField b1 = new JTextField(student.getLastName(), 7);//Last Name
 		JTextField c1 = new JTextField(student.getIdNumber(), 7);//Student Number
 		JTextField d1 = new JTextField(student.getGrade(), 7);//Grade
-		JTextField e1 = new JTextField(student.getDate(), 7);//grad submisison date
+
 		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
@@ -350,26 +364,17 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						student.setFirstName(a1.getText());
 						student.setLastName(b1.getText());
-						student.setIdNumber(c1.getText()); need to switch this to string
+						student.setIdNumber(c1.getText()); 
 						student.setGrade(d1.getText());
-						boom.setDate(e1.getText());
-						//these are just for no errors, could have done this with contructor go back and fix
-						boom.setAdvising("No");
-						boom.setTotalGPA("");
-						boom.setMajorGPA("");
-						boom.setTotalCredits("");
-						boom.setMajorCredits("");
-						boom.setUpperLevelCredits("");
 						//set submission
 						//send general to back end and display managePanel
 						StudentModule run = new StudentModule();
-						run.addStudent(student)
+						run.addStudent(student);
 						displayPanel(managePanel);
 						a1.setText(null);
 						b1.setText(null);
 						c1.setText(null);
 						d1.setText(null);
-						e1.setText(null);
 						
 					}
 				});
@@ -379,20 +384,13 @@ class ManageMenu {
 					public void actionPerformed(ActionEvent e){
 						student.setFirstName(a1.getText());
 						student.setLastName(b1.getText());
-						student.setIdNumber(c1.getText()); need to switch this to string
+						student.setIdNumber(c1.getText());
 						student.setGrade(d1.getText());
-						boom.setDate(e1.getText());
-						//these are just for no errors, could have done this with contructor go back and fix
-						boom.setAdvising("No");
-						boom.setTotalGPA("");
-						boom.setMajorGPA("");
-						boom.setTotalCredits("");
-						boom.setMajorCredits("");
-						boom.setUpperLevelCredits("");
+
 						//set submission
 						//send general to back end and display managePanel
 						StudentModule run = new StudentModule();
-						run.addStudent(student)
+						run.addStudent(student);
 						
 						//switch back to managePanel
 						displayPanel(managePanel);
@@ -400,7 +398,6 @@ class ManageMenu {
 						b1.setText(null);
 						c1.setText(null);
 						d1.setText(null);
-						e1.setText(null);
 						
 					}
 				});
@@ -435,14 +432,9 @@ class ManageMenu {
 		editStudent.add(d, con);
 		
 		con.gridy = 6;
-		editStudent.add(e, con);
-		con.gridx = 1;
-		editStudent.add(e1, con);
-		
-		con.gridy = 7;
-		editStudent.add(submit, con);
-		con.gridx = 0;
 		editStudent.add(back, con);
+		con.gridx = 1;
+		editStudent.add(submit, con);
 		
 		editStudent.revalidate();
 		displayPanel(editStudent);

@@ -2,11 +2,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.imageio.ImageIO;
+import java.io.File;
 
-class MainMenu {
+class MainMenu extends JComponent {
 	JFrame frame1;
 	JPanel buttons;
-	
+
 	public MainMenu(){
 		//Create the frame
 		frame1 = new JFrame ("Academic Advising 3000");
@@ -17,9 +19,9 @@ class MainMenu {
 		
 		buttons = new JPanel(new GridBagLayout());
 		makeButtons();
-			
-		//where the frame should start
+		
 		frame1.getContentPane().removeAll();
+		//where the frame should start
 		frame1.add(buttons, BorderLayout.CENTER);
 		frame1.repaint();
 		frame1.setVisible (true);
@@ -27,7 +29,7 @@ class MainMenu {
 	}
 	public void makeButtons(){
 		JLabel comboLbl = new JLabel("Academic Advising 3000"); 
-		
+
 		comboLbl.setFont(new Font("Arial", 2, 28));
 		JButton manageInfo = new JButton("Manage Student Information");
 		manageInfo.setPreferredSize(new Dimension(250, 25));

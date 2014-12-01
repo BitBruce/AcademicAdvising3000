@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.util.ArrayList;
+import java.text.*;
+import java.util.*;
 class GradSub {
 	public JFrame frame1;
 	public JPanel main;
@@ -9,6 +11,7 @@ class GradSub {
 	public JPanel findStudent;
 	public JPanel gradInput;
 	public String seekWord;
+	public JPanel recordGradPanel;
 	
 	public StudentModule stud;
 	
@@ -20,6 +23,8 @@ class GradSub {
 		findStudent = new JPanel(new GridBagLayout());
 		gradPanel = new JPanel(new GridBagLayout());
 		gradInput = new JPanel(new GridBagLayout());
+		recordGradPanel = new JPanel(new GridBagLayout());
+		recordGrad();
 		gradMenu();
 		findStudentPanel();
 		displayPanel(gradPanel);
@@ -30,11 +35,25 @@ class GradSub {
 		frame1.repaint();
 		frame1.setVisible(true);
 	}
+	public static String getCurrentTimeStamp() {
+	    SimpleDateFormat sdfDate = new SimpleDateFormat("MM/dd/yyyy");
+	    Date now = new Date();
+	    String strDate = sdfDate.format(now);
+	    return strDate;
+	}
 	
 	public void gradMenu(){
 			
 				JLabel menuTitle = new JLabel("Graduation Submission");
 				menuTitle.setFont(new Font("Arial", 2, 28));
+				
+				JButton record = new JButton("Record Grad Submission");
+				record.setPreferredSize(new Dimension(200, 25));
+				record.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e){
+						displayPanel(recordGradPanel);
+					}
+				});
 				
 				JButton find = new JButton("Find Grad Student");
 				find.setPreferredSize(new Dimension(200, 25));
@@ -63,6 +82,9 @@ class GradSub {
 				gradPanel.add(find, c);
 				
 				c.gridy = 3;
+				gradPanel.add(record, c);
+				
+				c.gridy = 4;
 				gradPanel.add(mainMenu, c);
 				
 
@@ -71,18 +93,26 @@ class GradSub {
 			JLabel menuTitle = new JLabel("Find Grad Student");
 			menuTitle.setFont(new Font("Arial", 2, 28));
 			
-			JLabel find = new JLabel("Enter Student Number");
-			JTextField find1 = new JTextField(5);//Student Number
+			JLabel find = new JLabel("Enter Student Number");			StudentModule run = new StudentModule();
+			ArrayList<Student> students = run.getAllStudents();
+			String [] ids = new String[students.size()];
 			
+			Student boom;
+			for(int i = 0;i<students.size(); i++){
+				boom = students.get(i);
+				ids[i] = boom.getIdNumber();
+			}
+			JComboBox studentList = new JComboBox(ids);
+
 			JButton submit = new JButton("Submit");//set this button
 			submit.addActionListener(new ActionListener() {
 								
 						public void actionPerformed(ActionEvent e){
-							seekWord = find1.getText();
+							seekWord = studentList.getSelectedItem().toString();
 							//find student at seekWord and get the appropriate Strings back
-							Student test = stud.getStudent("123");//test case
+							Student test = stud.getStudent(seekWord);//test case
 							gradSubmission(test);//use the found stuff
-							find1.setText(null);
+							
 						}
 					});
 			JButton back = new JButton("Back");
@@ -106,7 +136,7 @@ class GradSub {
 			con.gridy = 2;
 			findStudent.add(find, con);
 			con.gridx=1;
-			findStudent.add(find1, con);
+			findStudent.add(studentList, con);
 			
 			con.gridy = 3;
 			findStudent.add(submit, con);
@@ -210,4 +240,72 @@ class GradSub {
 			
 			
 		}
+		public void recordGrad(){
+			
+				JLabel menuTitle = new JLabel("Record Grad Submission");
+				menuTitle.setFont(new Font("Arial", 2, 28));
+				
+				JLabel find = new JLabel("Enter Student Number");
+				
+				StudentModule run = new StudentModule();
+				ArrayList<Student> students = run.getAllStudents();
+				String [] ids = new String[students.size()];
+				
+				Student boom;
+				for(int i = 0;i<students.size(); i++){
+					boom = students.get(i);
+					ids[i] = boom.getIdNumber();
+				}
+				JComboBox studentList = new JComboBox(ids);
+				
+				JButton submit = new JButton("Submit");//set this button
+				submit.addActionListener(new ActionListener() {
+									
+							public void actionPerformed(ActionEvent e){
+								seekWord = studentList.getSelectedItem().toString();
+								StudentModule run = new StudentModule();
+								Student boom = run.getStudent(seekWord);
+								
+								run.deleteStudent(seekWord);
+								String date = getCurrentTimeStamp();
+								System.out.print(date);
+								//add the date to gradsubdate
+								run.addStudent(boom);
+								displayPanel(main);
+ 
+							}
+						});
+				JButton back = new JButton("Back");
+				back.addActionListener(new ActionListener() {
+									
+							public void actionPerformed(ActionEvent e){
+								//back to mainmenu
+								displayPanel(main);
+ 
+							}
+						});
+
+
+				GridBagConstraints con = new GridBagConstraints();
+				Insets insets = frame1.getInsets();
+								
+				con.insets = new Insets(50, 50, 50, 50);
+				recordGradPanel.add(menuTitle, con);
+										
+				con.insets = new Insets(10,10,10,10);
+				
+				con.gridx = 0;
+				con.gridy = 2;
+				recordGradPanel.add(find, con);
+				con.gridx=1;
+				recordGradPanel.add(studentList, con);
+				
+				con.gridy = 3;
+				recordGradPanel.add(submit, con);
+				con.gridx = 0;
+				recordGradPanel.add(back, con);
+		}
+				
+
+
 }

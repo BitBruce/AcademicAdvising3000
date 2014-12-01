@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
-
+import java.util.ArrayList;
+import java.text.*;
+import java.util.*;
 class Record {
 	
 	JFrame frame1;
@@ -28,26 +29,44 @@ class Record {
 		frame1.repaint();
 		frame1.setVisible(true);
 	}
+	public static String getCurrentTimeStamp() {
+	    SimpleDateFormat sdfDate = new SimpleDateFormat("MM/dd/yyyy");
+	    Date now = new Date();
+	    String strDate = sdfDate.format(now);
+	    return strDate;
+	}
 	public void recordMenu(){
 		JLabel menuTitle = new JLabel("Record Advising");
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		
 		JLabel find = new JLabel("Enter Student Number");
-		JTextField find1 = new JTextField(5);//Student Number
+		
+		StudentModule run = new StudentModule();
+		ArrayList<Student> students = run.getAllStudents();
+		String [] ids = new String[students.size()];
+		
+		Student boom;
+		for(int i = 0;i<students.size(); i++){
+			boom = students.get(i);
+			ids[i] = boom.getIdNumber();
+		}
+		JComboBox studentList = new JComboBox(ids);
 		
 		JButton submit = new JButton("Submit");//set this button
 		submit.addActionListener(new ActionListener() {
 							
 					public void actionPerformed(ActionEvent e){
-						seekWord = find1.getText();
+						seekWord = studentList.getSelectedItem().toString();
 						StudentModule run = new StudentModule();
 						Student boom = run.getStudent(seekWord);
 						
 						run.deleteStudent(seekWord);
 						boom.setAdvising("Yes");
+						String date = getCurrentTimeStamp();
+						//also possibly change this advising date with current date
 						run.addStudent(boom);
 						displayPanel(main);
-						find1.setText(null);
+
 					}
 				});
 		JButton back = new JButton("Back");
@@ -56,7 +75,6 @@ class Record {
 					public void actionPerformed(ActionEvent e){
 						//back to mainmenu
 						displayPanel(main);
-						find1.setText(null);
 					}
 				});
 
@@ -73,7 +91,7 @@ class Record {
 		con.gridy = 2;
 		recordPanel.add(find, con);
 		con.gridx=1;
-		recordPanel.add(find1, con);
+		recordPanel.add(studentList, con);
 		
 		con.gridy = 3;
 		recordPanel.add(submit, con);
