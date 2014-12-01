@@ -86,10 +86,10 @@ class Reports {
 		JCheckBox [] checkboxes = new JCheckBox[students.size()];
 		
 		JLabel menuTitle = new JLabel("Choose Students");
-		menuTitle.setFont(new Font("Arial", 2, 28));
+		menuTitle.setFont(new Font("Arial", 2, 20));
 		
 		JButton submit = new JButton("Submit");
-		submit.setPreferredSize(new Dimension(200, 25));
+		submit.setPreferredSize(new Dimension(100, 25));
 		submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				//display academic reports for all checkboxes
@@ -106,13 +106,12 @@ class Reports {
 		});
 
 		JButton back = new JButton("Back");
-		back.setPreferredSize(new Dimension(200, 25));
+		back.setPreferredSize(new Dimension(100, 25));
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				displayPanel(reportsPanel);
 			}
 		});
-		
 
 		Student boom;
 		for(int i = 0;i<students.size(); i++){
@@ -122,26 +121,41 @@ class Reports {
 		
 		GridBagConstraints c = new GridBagConstraints();
 		Insets insets = frame1.getInsets();
-		Dimension size = menuTitle.getPreferredSize();
-		advisingReportChoicePanel.setBounds(250+insets.left, 50+insets.top, size.width, size.height);
+		menuTitle.setPreferredSize(new Dimension(175, 50));
+		
 						
-		c.insets = new Insets(50, 50, 50, 50);
+		c.insets = new Insets(50, 10, 30, 10);
 		
 		advisingReportChoicePanel.add(menuTitle, c);
-		c.insets = new Insets(10,10,10,10);
-		int x = 2;
+		c.insets = new Insets(1,10,1,10);
+		int y = 2;
+		int x = 0;
+		
 		for(int i = 0; i<checkboxes.length; i++){
-			c.gridy= x;
+			if(y == 7)
+			{
+				x++;
+				y = 2;
+			}
+			c.gridx = x;
+			c.gridy = y;
+			checkboxes[i].setPreferredSize(new Dimension(150,25));
 			advisingReportChoicePanel.add(checkboxes[i],c);
-			x++;
+			y++;
 		}
-		c.gridy = x;
+		c.insets = new Insets(10,10,10,10);
+		c.gridy = 8;
+		c.gridx = 0;
 		advisingReportChoicePanel.add(submit,c);
-		x++;
-		c.gridy = x;
+		c.gridx = 1;
+		
 		advisingReportChoicePanel.add(back, c);
 		advisingReportChoicePanel.revalidate();
-		displayPanel(advisingReportChoicePanel);
+		JScrollPane scrPane = new JScrollPane(advisingReportChoicePanel);
+		frame1.getContentPane().removeAll();
+		frame1.add(scrPane);
+		frame1.repaint();
+		frame1.setVisible(true);
 		
 	}
 	public void advisingReport(ArrayList<Student> tbd){
@@ -150,7 +164,7 @@ class Reports {
 		menuTitle.setFont(new Font("Arial", 2, 28));
 		
 		JButton back = new JButton("Back");
-		back.setPreferredSize(new Dimension(200, 25));
+		back.setPreferredSize(new Dimension(100, 25));
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				displayPanel(reportsPanel);
@@ -170,7 +184,7 @@ class Reports {
 		JLabel grade = new JLabel("Grade");
 		JLabel academicAdvising = new JLabel("Academic Advising");
 		JLabel date = new JLabel("Date");
-		c.insets = new Insets(10,10,10,10);
+		c.insets = new Insets(10,5 ,10,5);
 		
 		c.gridy = 1;
 		c.gridx = 0;
@@ -202,11 +216,15 @@ class Reports {
 		c.gridy = counter+1;
 		advisingReportPanel.add(back, c);
 		advisingReportPanel.revalidate();
-		displayPanel(advisingReportPanel);
+		JScrollPane scrPane = new JScrollPane(advisingReportPanel);
+		frame1.getContentPane().removeAll();
+		frame1.add(scrPane);
+		frame1.repaint();
+		frame1.setVisible(true);
 		
 	}
 	public void gradReport(){
-		
+		gradReportPanel.removeAll();
 		JButton back = new JButton("Back");
 		back.setPreferredSize(new Dimension(200, 25));
 		back.addActionListener(new ActionListener() {
@@ -242,21 +260,26 @@ class Reports {
 			c.gridy = 0;
 			gradReportPanel.add(new JLabel(student.getFirstName() + " " + student.getLastName() + " " + student.getIdNumber()),c);
 			c.gridy = 1;
-			gradReportPanel.add(new JLabel(String.valueOf(student.getMajorGPA())), c);
+			gradReportPanel.add(new JLabel(student.getMajorGPA()), c);
+			System.out.println(student.getMajorGPA());
 			c.gridy = 2;
-			gradReportPanel.add(new JLabel(String.valueOf(student.getTotalGPA())), c);
+			gradReportPanel.add(new JLabel(student.getTotalGPA()), c);
 			c.gridy = 3;
-			gradReportPanel.add(new JLabel(String.valueOf(student.getMajorCredits())), c);
+			gradReportPanel.add(new JLabel(student.getMajorCredits()), c);
 			c.gridy = 4;
-			gradReportPanel.add(new JLabel(String.valueOf(student.getUpperLevelCredits())), c);
+			gradReportPanel.add(new JLabel(student.getUpperLevelCredits()), c);
 			c.gridy = 5;
-			gradReportPanel.add(new JLabel(String.valueOf(student.getTotalCredits())), c);
+			gradReportPanel.add(new JLabel(student.getTotalCredits()), c);
 			c.gridy = 6;
 			gradReportPanel.add(new JLabel(student.getDate()), c);
 			}
 		}
 		c.gridy=7;
 		gradReportPanel.add(back, c);
-		displayPanel(gradReportPanel);
+		JScrollPane scrPane = new JScrollPane(gradReportPanel);
+		frame1.getContentPane().removeAll();
+		frame1.add(scrPane);
+		frame1.repaint();
+		frame1.setVisible(true);
 	}
 }
