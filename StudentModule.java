@@ -38,7 +38,7 @@ public class StudentModule {
 	}
 	
 	/*
-	 * Return a list of students whose date is before parameter date
+	 * Return a list of students whose date is before parameter grad submission date
 	 */
 	public ArrayList<Student> getStudentsByDate(String newDate) {
 		
@@ -48,14 +48,9 @@ public class StudentModule {
 		
 		for (Student i : students) {
 			
-			// if date is before, add to newStudents
-			date = i.getDate();
+			date = i.getGradSubmissionDate();
 			
-			/*
-			 *  I would ideally like to use a Date data type of some sort, or write a method to handle the specific parsing of date string, because the substrings below are messy
-			 *  Interesting note: Something weird happens with leading zeros when Integer.parseInt();
-			 *  IMPORTANT: Make sure date follows mm/dd/yyyy and not mm/d/yyyy etc.
-			 */
+			//IMPORTANT: Make sure date follows mm/dd/yyyy and not mm/d/yyyy etc.
 			
 			// if year < year
 			if ( Integer.parseInt(date.substring(6, date.length())) < Integer.parseInt(newDate.substring(6, newDate.length())) )  {
@@ -73,7 +68,7 @@ public class StudentModule {
 				// else if month == month, compare days
 				else if ( Integer.parseInt(date.substring(0, 2)) == Integer.parseInt(newDate.substring(0, 2)) ) {
 					
-					// if day < day
+					// if day <= day
 					if ( Integer.parseInt(date.substring(3, 5)) <= Integer.parseInt(newDate.substring(3, 5)) ) {
 						
 						newStudents.add(i);

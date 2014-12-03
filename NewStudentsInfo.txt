@@ -8,4 +8,5 @@ MajorGPA: 4.0
 MajorCredits: 45.0
 UpperLevelCredits: 45.0
 TotalCredits: 120.0
-Date: 11/11/2011
+GradSubmissionDate: 11/11/2011
+AcademicAdvisingDate: 01/01/2014

@@ -66,7 +66,8 @@ public class StudentSerializer {
 				  writer.write("MajorCredits: " + i.getMajorCredits() + "\r\n");
 				  writer.write("UpperLevelCredits: " + i.getUpperLevelCredits() + "\r\n");
 				  writer.write("TotalCredits: " + i.getTotalCredits() + "\r\n");
-				  writer.write("Date: " + i.getDate() + "\r\n");
+				  writer.write("GradSubmissionDate: " + i.getGradSubmissionDate() + "\r\n");
+				  writer.write("AcademicSubmissionDate: " + i.getAcademicAdvisingDate() + "\r\n");
 			}
 			
 			writer.close();
@@ -90,7 +91,7 @@ public class StudentSerializer {
 			students.add(new Student(studentText.remove(0), studentText.remove(0), 
 		    		studentText.remove(0), studentText.remove(0), studentText.remove(0), 
 		    		studentText.remove(0), studentText.remove(0), studentText.remove(0), 
-		    		studentText.remove(0), studentText.remove(0), studentText.remove(0)));
+		    		studentText.remove(0), studentText.remove(0), studentText.remove(0), studentText.remove(0)));
 			
 			studentText = new ArrayList<String>();	
 		}

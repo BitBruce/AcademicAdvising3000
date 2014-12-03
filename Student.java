@@ -12,8 +12,9 @@ public class Student {
 	private String majorCredits;
 	private String upperLevelCredits;
 	private String totalCredits;
-	private String date;
-	
+	private String gradSubmissionDate;
+	private String academicAdvisingDate;
+
 	/* Accessors/Mutators */
 	public String getFirstName() {
 		return firstName;
@@ -94,20 +95,28 @@ public class Student {
 	public void setTotalCredits(String totalCredits) {
 		this.totalCredits = totalCredits;
 	}
-
-	public String getDate() {
-		return date;
+	
+	public String getGradSubmissionDate() {
+		return gradSubmissionDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setGradSubmissionDate(String gradSubmissionDate) {
+		this.gradSubmissionDate = gradSubmissionDate;
+	}
+
+	public String getAcademicAdvisingDate() {
+		return academicAdvisingDate;
+	}
+
+	public void setAcademicAdvisingDate(String academicAdvisingDate) {
+		this.academicAdvisingDate = academicAdvisingDate;
 	}
 	
 	// Constructor
 	public Student(String firstName, String lastName, String idNumber,
 			String grade, String advising, String totalGPA, String majorGPA,
 			String majorCredits, String upperLevelCredits, String totalCredits,
-			String date) {
+			String gradSubmissionDate, String academicAdvisingDate) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -119,21 +128,23 @@ public class Student {
 		this.majorCredits = majorCredits;
 		this.upperLevelCredits = upperLevelCredits;
 		this.totalCredits = totalCredits;
-		this.date = date;
+		this.gradSubmissionDate = gradSubmissionDate;
+		this.academicAdvisingDate = academicAdvisingDate;
 	}
 
 	// Default Constructor
 	public Student() {
-		this.firstName = "Nate";
-		this.lastName = "Whitehead";
-		this.idNumber = "111";
-		this.grade = "eSports";
+		this.firstName = "FirstName";
+		this.lastName = "LastName";
+		this.idNumber = "000";
+		this.grade = "freshman";
 		this.advising = "No";
-		this.totalGPA = "2.5";
-		this.majorGPA = "3.0";
-		this.majorCredits = "45";
-		this.upperLevelCredits = "49";
-		this.totalCredits = "124";
-		this.date = "01/01/2014";
+		this.totalGPA = "0.0";
+		this.majorGPA = "0.0";
+		this.majorCredits = "0";
+		this.upperLevelCredits = "0";
+		this.totalCredits = "0";
+		this.gradSubmissionDate = "01/01/2014";
+		this.academicAdvisingDate = "01/01/2014";
 	}
 }
