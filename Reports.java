@@ -96,7 +96,9 @@ class Reports {
 			 	ArrayList<Student> toBeDisplayed = new ArrayList<Student>();
 				for(JCheckBox checkbox : checkboxes){
 					if(checkbox.isSelected()){
-						Student s = run.getStudent(checkbox.getText());//can make just string when bruce finishes
+						String str = checkbox.getText();
+						String[] array = str.split(" ");
+						Student s = run.getStudent(array[0]);//can make just string when bruce finishes
 						toBeDisplayed.add(s);
 					}
 					
@@ -116,7 +118,7 @@ class Reports {
 		Student boom;
 		for(int i = 0;i<students.size(); i++){
 			boom = students.get(i);
-			checkboxes[i] = new JCheckBox(boom.getIdNumber());
+			checkboxes[i] = new JCheckBox(boom.getIdNumber() + " " + boom.getFirstName() + " " + boom.getLastName());
 		}
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -139,17 +141,17 @@ class Reports {
 			}
 			c.gridx = x;
 			c.gridy = y;
-			checkboxes[i].setPreferredSize(new Dimension(150,25));
+			checkboxes[i].setPreferredSize(new Dimension(200,25));
 			advisingReportChoicePanel.add(checkboxes[i],c);
 			y++;
 		}
 		c.insets = new Insets(10,10,10,10);
 		c.gridy = 8;
 		c.gridx = 0;
-		advisingReportChoicePanel.add(submit,c);
+		advisingReportChoicePanel.add(back,c);
 		c.gridx = 1;
 		
-		advisingReportChoicePanel.add(back, c);
+		advisingReportChoicePanel.add(submit, c);
 		advisingReportChoicePanel.revalidate();
 		JScrollPane scrPane = new JScrollPane(advisingReportChoicePanel);
 		frame1.getContentPane().removeAll();
@@ -211,7 +213,7 @@ class Reports {
 			c.gridx = 3;
 			advisingReportPanel.add(new JLabel(student.getAdvising()), c);
 			c.gridx = 4;
-			advisingReportPanel.add(new JLabel(student.getDate()), c);
+			advisingReportPanel.add(new JLabel(student.getAcademicAdvisingDate()), c);
 		}
 		c.gridy = counter+1;
 		advisingReportPanel.add(back, c);
@@ -256,7 +258,7 @@ class Reports {
 		gradReportPanel.add(new JLabel("Submission Date"), c);
 		
 		for(Student student : students){
-			if(((student.getDate())!=null) && !(student.getDate().isEmpty()) && !(student.getDate().equals(""))){
+			if(((student.getGradSubmissionDate())!=null) && !(student.getGradSubmissionDate().isEmpty()) && !(student.getGradSubmissionDate().equals(""))){
 			c.gridy = 0;
 			gradReportPanel.add(new JLabel(student.getFirstName() + " " + student.getLastName() + " " + student.getIdNumber()),c);
 			c.gridy = 1;
@@ -271,7 +273,7 @@ class Reports {
 			c.gridy = 5;
 			gradReportPanel.add(new JLabel(student.getTotalCredits()), c);
 			c.gridy = 6;
-			gradReportPanel.add(new JLabel(student.getDate()), c);
+			gradReportPanel.add(new JLabel(student.getGradSubmissionDate()), c);
 			}
 		}
 		c.gridy=7;

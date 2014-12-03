@@ -94,13 +94,13 @@ class GradSub {
 			menuTitle.setFont(new Font("Arial", 2, 28));
 			
 			JLabel find = new JLabel("Enter Student Number");			StudentModule run = new StudentModule();
-			ArrayList<Student> students = run.getAllStudents();
+			ArrayList<Student> students = run.getStudentsByDate("06/06/2014");
 			String [] ids = new String[students.size()];
 			
 			Student boom;
 			for(int i = 0;i<students.size(); i++){
 				boom = students.get(i);
-				ids[i] = boom.getIdNumber();
+				ids[i] = boom.getIdNumber() + " " + boom.getFirstName() + " " + boom.getLastName();
 			}
 			JComboBox studentList = new JComboBox(ids);
 
@@ -109,8 +109,9 @@ class GradSub {
 								
 						public void actionPerformed(ActionEvent e){
 							seekWord = studentList.getSelectedItem().toString();
-							//find student at seekWord and get the appropriate Strings back
-							Student test = stud.getStudent(seekWord);//test case
+							seekWord = studentList.getSelectedItem().toString();
+							String[] array = seekWord.split(" ");
+							Student test = stud.getStudent(array[0]);//test case
 							gradSubmission(test);//use the found stuff
 							
 						}
@@ -254,22 +255,24 @@ class GradSub {
 				Student boom;
 				for(int i = 0;i<students.size(); i++){
 					boom = students.get(i);
-					ids[i] = boom.getIdNumber();
+					ids[i] = boom.getIdNumber() + " " + boom.getFirstName() + " " + boom.getLastName();
 				}
 				JComboBox studentList = new JComboBox(ids);
 				
-				JButton submit = new JButton("Submit");//set this button
+				JButton submit = new JButton("Submit");
 				submit.addActionListener(new ActionListener() {
 									
 							public void actionPerformed(ActionEvent e){
 								seekWord = studentList.getSelectedItem().toString();
+								String[] array = seekWord.split(" ");
 								StudentModule run = new StudentModule();
-								Student boom = run.getStudent(seekWord);
+								Student boom = run.getStudent(array[0]);
 								
 								run.deleteStudent(seekWord);
 								String date = getCurrentTimeStamp();
 								System.out.print(date);
-								//add the date to gradsubdate
+								//add the date to gradsubdate need to do this
+								boom.setGradSubmissionDate(date);
 								run.addStudent(boom);
 								displayPanel(main);
  

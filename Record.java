@@ -64,6 +64,7 @@ class Record {
 						boom.setAdvising("Yes");
 						String date = getCurrentTimeStamp();
 						//also possibly change this advising date with current date
+						boom.setAcademicAdvisingDate(date);
 						run.addStudent(boom);
 						displayPanel(main);
 

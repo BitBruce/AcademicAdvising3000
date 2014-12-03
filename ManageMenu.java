@@ -138,7 +138,7 @@ class ManageMenu {
 		Student boom;
 		for(int i = 0;i<students.size(); i++){
 			boom = students.get(i);
-			ids[i] = boom.getIdNumber();
+			ids[i] = boom.getIdNumber() + " " + boom.getFirstName() + " " + boom.getLastName();
 		}
 		JComboBox studentList = new JComboBox(ids);
 		
@@ -147,10 +147,14 @@ class ManageMenu {
 							
 					public void actionPerformed(ActionEvent e){
 						seekWord = studentList.getSelectedItem().toString();
+						String[] array = seekWord.split(" ");
 						//delete student at seekWord
 						StudentModule run = new StudentModule();
-						run.deleteStudent(seekWord);//need to add popup
-						displayPanel(managePanel);
+
+						makeSure(run.getStudent(array[0]));
+						
+						/*run.deleteStudent(seekWord);//need to add popup
+						displayPanel(managePanel);*/
 					}
 				});
 		JButton back = new JButton("Back");
@@ -183,6 +187,52 @@ class ManageMenu {
 		displayPanel(deleteStudent);
 		
 	}
+	public void makeSure(Student student){
+		JFrame makeSureFrame = new JFrame("Delete Student");
+		makeSureFrame.setSize (370,100);
+		JPanel panel = new JPanel();
+		
+		JLabel x = new JLabel("Are you sure you want to delete " + student.getFirstName() + " " + student.getLastName() +"?");
+		JButton submit = new JButton("I'm Sure");//set this button
+		submit.addActionListener(new ActionListener() {
+							
+					public void actionPerformed(ActionEvent e){
+						//delete the student at sekword
+						StudentModule run = new StudentModule();
+						run.deleteStudent(student.getIdNumber());
+						//display deletepanel or just close frame
+						makeSureFrame.dispatchEvent(new WindowEvent(makeSureFrame, WindowEvent.WINDOW_CLOSING));
+						displayPanel(managePanel);
+					}
+				});
+		JButton back = new JButton("Cancel");
+		back.addActionListener(new ActionListener() {
+							
+					public void actionPerformed(ActionEvent e){
+						//display deletepanel or just close frame
+						makeSureFrame.dispatchEvent(new WindowEvent(makeSureFrame, WindowEvent.WINDOW_CLOSING));
+					}
+				});
+				
+		
+		GridBagConstraints con = new GridBagConstraints();
+		con.insets = new Insets(10,10,10,10);
+		
+		con.gridy = 0;
+		con.gridx = 0;
+		panel.add(x, BorderLayout.NORTH);
+		con.gridy = 1;
+		panel.add(back, con);
+		con.gridx = 1;
+		panel.add(submit, con);
+		
+		makeSureFrame.getContentPane().removeAll();
+		makeSureFrame.add(panel);
+		makeSureFrame.setLocationRelativeTo(null);
+		makeSureFrame.pack();
+		makeSureFrame.setVisible(true);
+		
+	}
 	
 	public void addStudentPanel(){
 		
@@ -208,7 +258,8 @@ class ManageMenu {
 						boom.setLastName(b1.getText());
 						boom.setIdNumber(c1.getText());
 						boom.setGrade(d1.getText());
-						boom.setDate("");
+						boom.setGradSubmissionDate("");
+						boom.setAcademicAdvisingDate("");
 						//these are just for no errors, could have done this with contructor go back and fix
 						boom.setAdvising("No");
 						boom.setTotalGPA("");
@@ -292,7 +343,7 @@ class ManageMenu {
 		Student boom;
 		for(int i = 0;i<students.size(); i++){
 			boom = students.get(i);
-			ids[i] = boom.getIdNumber();
+			ids[i] = boom.getIdNumber() + " " + boom.getFirstName() + " " + boom.getLastName();
 		}
 		
 		JComboBox studentList = new JComboBox(ids);
@@ -301,10 +352,11 @@ class ManageMenu {
 							
 					public void actionPerformed(ActionEvent e){
 						seekWord = studentList.getSelectedItem().toString();
+						String[] array = seekWord.split(" ");
 						//find student at seekWord and get the appropriate Strings back
 						StudentModule run = new StudentModule();
-						Student test = run.getStudent(seekWord);//change to string
-						run.deleteStudent(seekWord);
+						Student test = run.getStudent(array[0]);//change to string
+						run.deleteStudent(array[0]);
 						System.out.print(test.getFirstName());
 						editStudentPanel(test);//use the found stuff
 

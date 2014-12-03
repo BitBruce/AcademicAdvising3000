@@ -1,0 +1,12 @@
+FirstName: Foo
+LastName: Bar
+VID: 54231
+Grade: Junior
+Advising: No
+TotalGPA: 4.0
+MajorGPA: 4.0
+MajorCredits: 45.0
+UpperLevelCredits: 45.0
+TotalCredits: 120.0
+GradSubmissionDate: 11/11/2011
+AcademicAdvisingDate: 01/01/2014
